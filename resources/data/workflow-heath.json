@@ -1,0 +1,156 @@
+/* 取引申請workflowのStep情報 */
+var wkJson = {
+  "name" : "身体状况记录",
+  "currentStep" : "A-1",
+  "displayArea" : "heathInfo",
+  "stepsStr" : ["A-1","A-2"],
+  "steps" : {
+    "A-1" : {
+      "id":"A-1",
+      "name":"记录",
+      "clnm":"heathInfo",
+      "actions" : [
+        {"name":"Save","step":"A-1"},
+        {"name":"Continue","step":"A-2"}
+      ]
+    },
+    "A-2" : {
+      "id":"A-2",
+      "name":"确认",
+      "clnm":"confirm",
+      "actions" : [
+        {"name":"Back","step":"A-1"},
+        {"name":"Save","step":"A-2"},
+        {"name":"Continue","step":"A-3"}
+      ]
+    }
+  } 
+};
+
+/* 共通情報(プルダウン、マスタ情報、選択項目[radio,checkbox]) */
+var masterInfo = {
+  "tableInfo" : [
+    /**/[
+        "2021-10-13T14:25",
+        "4小时40分",
+        "体温正常,轻度畏寒<br>找了条毯子盖上"
+    ],
+    [
+        "2021-10-13T17:05",
+        "7小时20分",
+        "体温36.7度,无明显不适.注射部用力有疼感<br>"
+    ],
+    [
+        "2021-10-13T21:10",
+        "11小时25分",
+        "感觉体温有上升,测量37.2度<br>准备开水,每次100ml,温水循环"
+    ],
+    [
+        "2021-10-13T22:30",
+        "12小时45分",
+        "畏寒严重,体温38.2度<br>体温39度以下用退烧贴物理降温"
+    ],
+    [
+        "2021-10-13T23:26",
+        "13小时41分",
+        "畏寒厉害,不忍耐情况下牙关打颤<br>继续喝水"
+    ],
+    [
+        "2021-10-14T00:28",
+        "14小时43分",
+        "浅度睡眠,感觉身体内有好几方势力在打架<br>"
+    ],
+    [
+        "2021-10-14T01:30",
+        "15小时45分",
+        "体温38.5度,畏寒情况减弱<br>被褥内温度太高,小腿伸出被褥降温"
+    ],
+    [
+        "2021-10-14T08:25",
+        "22小时40分",
+        "体温37.8度<br>"
+    ],
+    [
+        "2021-10-14T11:00",
+        "25小时15分",
+        "体温37.5度,有出汗倾向<br>泡了一会温水澡"
+    ],
+    [
+        "2021-10-14T13:30",
+        "27小时45分",
+        "体温37.2度<br>午睡休息"
+    ],
+    [
+        "2021-10-14T16:40",
+        "30小时55分",
+        "体温36.5度,正常.<br>"
+    ]
+  ]
+};
+
+/* 各Stepの入力項目情報 */
+var contract = {
+  "heathInfo" : {
+    "id" : "heathInfo",
+    "title" : "基本情報",
+    "layout" : "sigle",
+    "detail" : {
+      "rows" : [
+        {
+          "design" : "",
+          "items" : [
+            {"property":"startTime","name":"注射时间","type":"datetime","masterId":"","value":"2021-10-13T09:45","require":"Y","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"currentTime","name":"记录时间","type":"datetime","masterId":"","value":"2021-10-13T14:25","require":"Y","validation":"datetime","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"information","name":"身体情况","type":"text","masterId":"","value":"","require":"","validation":"","style":"width:500px"}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"countermeasure","name":"对策","type":"text","masterId":"","value":"","require":"","validation":"","style":"width:500px"}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"add","name":"添加记录","type":"button","masterId":"","value":"addRecord()","require":"","validation":""}
+          ]
+        }
+      ]
+    }
+  },
+  "confirm" : {
+    "id" : "confirm",
+    "title" : "契約情報必須",
+    "layout" : "sigle",
+    "detail" : {
+      "rows" : [
+        {
+          "design" : "",
+          "items" : [
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+          ]
+        }
+      ]
+    }
+  }
+};

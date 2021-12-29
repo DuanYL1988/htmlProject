@@ -1,0 +1,66 @@
+/*
+var jsonData = {
+  "tableName" : "FIREEMBLEM_HERO",
+  "columns" : [
+    {"name":"masterId","length":"11" ,"type":"varchar","fifterWidth" : "20px","title":"","inputType":"","hide":"true"},
+    {"name":"titleName","length":"40" ,"type":"varchar","fifterWidth" : "100px","title":"称号","inputType":"","hide":""},
+    {"name":"name","length":"40" ,"type":"varchar","fifterWidth" : "50px","title":"名","inputType":"","hide":""},
+    {"name":"nickName","length":"40" ,"type":"varchar","fifterWidth" : "50px","title":"昵称","inputType":"","hide":""},
+    {"name":"imgName","length":"50" ,"type":"varchar","fifterWidth" : "110px","title":"UNKEY","inputType":"","hide":""},
+    {"name":"origin","length":"40" ,"type":"varchar","fifterWidth" : "80px","title":"作品","inputType":"select_0001","hide":""},
+    {"name":"hp","length":"3" ,"type":"integer","fifterWidth" : "35px","title":"HP","inputType":"","hide":""},
+    {"name":"attact","length":"3" ,"type":"integer","fifterWidth" : "35px","title":"攻击","inputType":"","hide":""},
+    {"name":"speed","length":"3" ,"type":"integer","fifterWidth" : "35px","title":"攻速","inputType":"","hide":""},
+    {"name":"def","length":"3" ,"type":"integer","fifterWidth" : "32px","title":"防御","inputType":"","hide":""},
+    {"name":"mdf","length":"3" ,"type":"integer","fifterWidth" : "35px","title":"魔防","inputType":"","hide":""},
+    {"name":"weaponType","length":"10" ,"type":"varchar","fifterWidth" : "70px","title":"武器类型","inputType":"select_0001","hide":""},
+    {"name":"weapon","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"武器","inputType":"","hide":""},
+    {"name":"skillA","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"A技能","inputType":"","hide":""},
+    {"name":"skillC","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"B技能","inputType":"","hide":""},
+    {"name":"skillB","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"C技能","inputType":"","hide":""},
+    {"name":"skillD","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"D技能","inputType":"","hide":""},
+    {"name":"skillS","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"E技能","inputType":"","hide":""},
+    {"name":"skillE","length":"40" ,"type":"varchar","fifterWidth" : "90px","title":"F技能","inputType":"","hide":""},
+    {"name":"limitPlus","length":"2" ,"type":"integer","fifterWidth" : "35px","title":"突破","inputType":"","hide":""},
+    {"name":"dragonFlower","length":"2" ,"type":"integer","fifterWidth" : "70px","title":"神龙之花","inputType":"","hide":""},
+    {"name":"supportMate","length":"11" ,"type":"integer","fifterWidth" : "32px","title":"支援","inputType":"","hide":""},
+    {"name":"blessing","length":"15" ,"type":"varchar","fifterWidth" : "35px","title":"祝福","inputType":"select_0001","hide":""},
+    {"name":"moveType","length":"15" ,"type":"varchar","fifterWidth" : "70px","title":"移动方式","inputType":"select_0001","hide":""},
+    {"name":"color","length":"10" ,"type":"varchar","fifterWidth" : "35px","title":"颜色","inputType":"select_0001","hide":""},
+    {"name":"race","length":"5" ,"type":"varchar","fifterWidth" : "35px","title":"种族","inputType":"select_0001","hide":""},
+    {"name":"heroType","length":"10" ,"type":"varchar","fifterWidth" : "35px","title":"类型","inputType":"","hide":""},
+    {"name":"team","length":"2" ,"type":"integer","fifterWidth" : "35px","title":"编队","inputType":"","hide":""},
+    {"name":"skillPoint","length":"5" ,"type":"integer","fifterWidth" : "50px","title":"技能点","inputType":"","hide":""},
+    {"name":"heroPoint","length":"5" ,"type":"integer","fifterWidth" : "50px","title":"英雄点","inputType":"","hide":""},
+    {"name":"specTag","length":"30" ,"type":"integer","fifterWidth" : "20px","title":"标签","inputType":"","hide":"true"},
+    {"name":"favorite","length":"2" ,"type":"varchar","fifterWidth" : "0px","title":"","inputType":"","hide":"true"},
+    {"name":"rank","length":"2" ,"type":"varchar","fifterWidth" : "35px","title":"评价","inputType":"","hide":""}
+  ],
+  "dataList" : [
+	
+  ]
+};*/
+
+var jsonData = {
+  "tableName" : "CODE_MASTER",
+  "columns" : [
+    {"name":"categoaryId" ,"length":"4" ,"type":"varchar","fifterWidth" : "30px","inputType":"","hide":"true"},
+    {"name":"categoaryName" ,"length":"50" ,"type":"varchar","fifterWidth" : "100px","inputType":"","hide":"true"},
+    {"name":"code" ,"length":"20" ,"type":"varchar","fifterWidth" : "30px","inputType":"","hide":"true"},
+    {"name":"value" ,"length":"50" ,"type":"varchar","fifterWidth" : "100px","inputType":"","hide":"true"}
+  ],
+  "dataList" : [
+    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Red" , "value" : "红色"},
+    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Blue" , "value" : "蓝色"},
+    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Green" , "value" : "绿色"},
+    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "None" , "value" : "无"},
+    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Foot" , "value" : "步行"},
+    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Arrom" , "value" : "重装"},
+    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Knight" , "value" : "骑兵"},
+    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Fly" , "value" : "飞行"},
+    {"categoaryId" : "0003" ,"categoaryName" : "" ,"code" : "" , "value" : "3"},
+    {"categoaryId" : "1001" ,"categoaryName" : "资产类型" ,"code" : "14" , "value" : "When"}
+  ]
+};
+
+

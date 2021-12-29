@@ -1,0 +1,81 @@
+body {
+  background-color: #b6efa8;
+}
+
+main {
+}
+
+/* 流程图标区域 */
+#progressBar{
+  display: flex;
+  background-color: #b6efa8;
+}
+
+.status {
+  display: flex;
+}
+
+/* 流程图标 */
+.wk_icon {
+  background-color: #3b3e3991;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  font-size:21px;
+}
+
+.wk_icon_next {
+  border-top: 15px solid transparent;
+  border-left: 10px solid #3b3e3991;
+  border-bottom: 15px solid transparent;
+}
+
+.wk_icon_pre {
+  border-top: 15px solid transparent;
+  border-left: 10px solid #b6efa8;
+  border-bottom: 15px solid transparent;
+  margin-right: -10px;
+  z-index:1;
+}
+
+/* 当前状态 */
+#progressBar .current {
+  background-color: rgb(255,255,0,1);
+}
+
+#progressBar .currentNext {
+  border-left: 10px solid rgb(255,255,0,1);
+}
+
+.editArea {
+  overflow : auto;
+}
+
+.title {
+  font-size:x-large;
+  font-weight:bolder;
+}
+
+.displayOnly {
+  padding-left : 5px;
+  color : red;
+}
+
+/* 按钮 */
+#eventArea {
+  padding-top:20px;
+}
+
+.btn {
+  float:right;
+  display:inline-block
+}
+
+.cell_btn {
+  height:30px;
+  width:100px;
+  font-size:small;
+  float:right;
+  margin-left:550px;
+  background-color:#d6ed7c;
+}

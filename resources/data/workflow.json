@@ -1,0 +1,307 @@
+/* 取引申請workflowのStep情報 */
+var wkJson = {
+  "name" : "進度管理",
+  "currentStep" : "A-1",
+  "stepsStr" : ["A-9","A-1","A-2","A-3"],
+  "steps" : {
+    "A-1" : {
+      "id":"A-1",
+      "name":"契約書捺印",
+      "clnm":"contractFile",
+      "actions" : [
+        {"name":"Back","step":"A-9"},
+        {"name":"捺印申請","step":"1"},
+        {"name":"捺印承認","step":"2"},
+        {"name":"契約書発送","step":"3"},
+        {"name":"契約書点検","step":"A-2"}
+      ]
+    },
+    "A-2" : {
+      "id":"A-2",
+      "name":"注文書捺印",
+      "clnm":"ordeFile",
+      "actions" : [
+        {"name":"Back","step":"A-1"},
+        {"name":"捺印申請","step":"1"},
+        {"name":"捺印承認","step":"2"},
+        {"name":"発送・回収","step":"3"},
+        {"name":"受付","step":"A-3"}
+      ]
+    },
+    "A-3" : {
+      "id":"A-3",
+      "name":"点検・受領",
+      "clnm":"acceptFile",
+      "actions" : [
+        {"name":"Back","step":"A-2"},
+        {"name":"納品書受領","step":"1"},
+        {"name":"借受証発送","step":"2"},
+        {"name":"発送・回収","step":"3"},
+        {"name":"検収","step":"4"},
+        {"name":"確認実施","step":"5"},
+        {"name":"報告書作成","step":"A-3"}
+      ]
+    },
+    "A-9" : {
+      "id":"A-9",
+      "name":"資産進度管理",
+      "clnm":"assertList",
+      "actions" : [
+        {"name":"契約日入力","step":"5"},
+        {"name":"発送日入力","step":"6"},
+        {"name":"受付日入力","step":"7"},
+        {"name":"検收日入力","step":"8"}
+      ]
+    }
+  } 
+};
+
+/* 共通情報(プルダウン、マスタ情報、選択項目[radio,checkbox]) */
+var masterInfo = {
+  "m_CNTRVARDIV" : [
+    {"code":"1","value":"契約形態A"},
+    {"code":"2","value":"契約形態B"},
+    {"code":"3","value":"契約形態C"}
+  ],
+  "m_ARTVARDIV" : [
+    {"code":"1","value":"商品種類1"},
+    {"code":"2","value":"商品種類2"},
+    {"code":"3","value":"商品種類3"}
+  ],
+  "m_CHRGDPSCCD" : [
+    {"code":"1","value":"部課-a"},
+    {"code":"2","value":"部課-b"},
+    {"code":"3","value":"部課-c"}
+  ],
+  "m_CNTRCONO" : [
+    {"code":"1","value":"事業所名１"},
+    {"code":"2","value":"事業所名２"},
+    {"code":"3","value":"事業所名３"},
+    {"code":"SONY","value":"SONY"}
+  ],
+  "m_fileProgress" : ["決済済","契約日入力済","入力済","","","","","",""],
+  "m_fileList" : [
+    ["契約書(承認)","2E2012000400000000119ZZ0101","","2019/12/01 00","","","","","","","001"],
+    ["契約書(取消)","","","","","","","","","",""],
+    ["契約書(照会)","","","","","","","","","",""],
+    ["発注書","2E2012000400000000129ZZ0101","","","","","","","","","001"],
+    ["発注書(取消)","","","","","","","","","",""],
+    ["発注書(照会)","","","","","","","","","",""],
+    ["検収書","2E2012000400000000139ZZ0101","","","","","","","","","001"],
+    ["検収書(取消)","","","","","","","","","",""],
+    ["検収書(照会)","","","yyyy/MM/dd 00:00","yyyy/MM/dd 00:00","yyyy/MM/dd 00:00","yyyy/MM/dd 00:00","yyyy/MM/dd 00:00","yyyy/MM/dd 00:00","yyyy/MM/dd 00:00",""]
+  ],
+  "m_assetList" : [
+    ["11001","12001","13001","14001","15001","16001","17001","ＣＬＳ","19001","110001","無","112001","顧客","立替払","中古","小切手","117001","118001","119001","120001","機","122001","123001","124001","125001","126001","127001","128001","129001","130001","131001","132001","133001","134001","135001","136001","137001","138001","139001","140001","141001","142001","143001","転貸‐リース業者向","145001","146001","147001","148001","149001","リース金融","151001","152001","153001","データ消去費用","155001"],
+    ["21001","22001","23001","24001","25001","26001","27001","顧客","29001","210001","ＴＣ","212001","立替払","幹事立替‐請求される","短縮","現金","217001","218001","219001","220001","基","222001","223001","224001","225001","226001","227001","228001","229001","230001","231001","232001","233001","234001","235001","236001","237001","238001","239001","240001","241001","242001","243001","転貸‐レンタル物件","245001","246001","247001","248001","249001","自社約損","251001","252001","253001","保守費用","255001"],
+    ["31001","32001","33001","34001","35001","36001","37001","立替払","39001","310001","顧客","312001","幹事立替‐請求される","幹事立替‐調整済","短縮","振替","317001","318001","319001","320001","枚","322001","323001","324001","325001","326001","327001","328001","329001","330001","331001","332001","333001","334001","335001","336001","337001","338001","339001","340001","341001","342001","343001","転貸‐ソフトウエア","345001","346001","347001","348001","349001","他社約損","351001","352001","353001","配送費用","355001"]
+  ]
+};
+
+/* 各Stepの入力項目情報 */
+var contract = {
+  "baseInfo" : {
+    "id" : "baseInfo",
+    "title" : "基本情報",
+    "layout" : "single",
+    "detail" : {
+      "rows" : [
+        {
+          "design" : "",
+          "items" : [
+            {"property":"CNTRNO","name":"契約番号","type":"text","masterId":"","value":"20120004-0-00","require":"Y","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"CNTRVARDIV","name":"契約形態","type":"select","masterId":"m_CNTRVARDIV","value":"","require":"Y","validation":"","style":""},
+            {"property":"ARTVARDIV","name":"商品種類","type":"select","masterId":"m_ARTVARDIV","value":"","require":"Y","validation":"","style":""},
+            {"property":"CHRGDPSCCD","name":"担当部課","type":"select","masterId":"m_CHRGDPSCCD","value":"","require":"Y","validation":"","style":""},
+            {"property":"CHRGCD","name":"担当者","type":"text","masterId":"","value":"担当　大郎","require":"","validation":"","style":""}
+          ]
+        }
+      ]
+    }
+  },
+  "contractFile" : {
+    "id" : "contractFile",
+    "title" : "契約書作成",
+    "layout" : "single",
+    "detail" : {
+      "rows" : [
+        {
+          "design" : "",
+          "items" : [
+            {"property":"fileNo","name":"契約書番号","type":"text","masterId":"","value":"2E2012000400000000119ZZ0101","require":"","validation":"","style":"width:230px","readonly":"Y"}
+          ]
+        },
+        {
+          "design" : "vertical",
+          "items" : [
+            {"property":"fileInfo","name":"契約書内容詳細","type":"textarea","masterId":"","value":"契約内容\n略","require":"","validation":"","style":"width:860px;height:200px","readonly":"Y"}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"applicationFlag","name":"申請済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"applicationDate","name":"申請日付","type":"datetime","masterId":"","value":"","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"approvalFlag","name":"承認済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"approvalDate","name":"承認日付","type":"datetime","masterId":"","value":"未","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"sendFlag","name":"発送済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"sendDate","name":"発送日付","type":"datetime","masterId":"","value":"未","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"replyFlag","name":"返信済","type":"checkbox","masterId":"","value":"checked","require":"Y","validation":"","style":"","readonly":"Y"},
+            {"property":"replyDate","name":"返信日付","type":"datetime","masterId":"","value":"checked","require":"Y","validation":"","style":"","readonly":"Y"}
+          ]
+        }
+      ]
+    }
+  },
+  "ordeFile" : {
+    "id" : "ordeFile",
+    "title" : "注文書作成",
+    "layout" : "single",
+    "detail" : {
+      "rows" : [
+        {
+          "design" : "",
+          "items" : [
+            {"property":"fileNo","name":"契約書番号","type":"text","masterId":"","value":"2E2012000400000000129ZZ0101","require":"","validation":"","style":"width:230px","readonly":"Y"}
+          ]
+        },
+        {
+          "design" : "vertical",
+          "items" : [
+            {"property":"fileInfo","name":"契約書内容詳細","type":"textarea","masterId":"","value":"注文内容\n略","require":"","validation":"","style":"width:860px;height:200px","readonly":"Y"}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"applicationFlag","name":"申請済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"applicationDate","name":"申請日付","type":"datetime","masterId":"","value":"","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"approvalFlag","name":"承認済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"approvalDate","name":"承認日付","type":"datetime","masterId":"","value":"未","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"sendFlag","name":"発送済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"sendDate","name":"発送日付","type":"datetime","masterId":"","value":"未","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"replyFlag","name":"返信済","type":"checkbox","masterId":"","value":"checked","require":"Y","validation":"","style":"","readonly":"Y"},
+            {"property":"replyDate","name":"返信日付","type":"datetime","masterId":"","value":"checked","require":"Y","validation":"","style":"","readonly":"Y"}
+          ]
+        }
+      ]
+    }
+  },
+  "acceptFile" : {
+    "id" : "acceptFile",
+    "title" : "検収書類",
+    "layout" : "single",
+    "detail" : {
+      "rows" : [
+        {
+          "design" : "",
+          "items" : [
+            {"property":"fileNo","name":"契約書番号","type":"text","masterId":"","value":"2E2012000400000000139ZZ0101","require":"","validation":"","style":"width:230px","readonly":"Y"}
+          ]
+        },
+        {
+          "design" : "vertical",
+          "items" : [
+            {"property":"fileInfo","name":"契約書内容詳細","type":"textarea","masterId":"","value":"検収内容詳細\n略","require":"","validation":"","style":"width:860px;height:200px","readonly":"Y"}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"applicationFlag","name":"申請済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"applicationDate","name":"申請日付","type":"datetime","masterId":"","value":"","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"approvalFlag","name":"承認済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"approvalDate","name":"承認日付","type":"datetime","masterId":"","value":"未","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"sendFlag","name":"発送済","type":"label","masterId":"","value":"未","require":"","validation":"","style":""},
+            {"property":"sendDate","name":"発送日付","type":"datetime","masterId":"","value":"未","require":"","validation":"","style":""}
+          ]
+        },
+        {
+          "design" : "",
+          "items" : [
+            {"property":"replyFlag","name":"返信済","type":"checkbox","masterId":"","value":"checked","require":"Y","validation":"","style":"","readonly":"Y"},
+            {"property":"replyDate","name":"返信日付","type":"datetime","masterId":"","value":"checked","require":"Y","validation":"","style":"","readonly":"Y"}
+          ]
+        }
+      ]
+    }
+  },
+  "assertList" : {
+    "id" : "assertList",
+    "title" : "進度管理",
+    "layout" : "group",
+    "sections" : ["singleAssert","singleFile"],
+    "layoutGroup" : {
+      "singleAssert" : {
+        "id" : "singleAssert",
+        "title" : "資産別",
+        "layout" : "single",
+        "head" : ["一回回収額","取得金額","支払サイト","支払ＤＤ","手形日数","耐年","耐年ｺｰﾄﾞ","固税負担","動総料率","品名ｺｰﾄﾞ","動総負担","特保料率","特殊負担","信保負担","中短区分","支払方法","検収予定日","前払(頭金)","物件名","数量","単位","設置場所","型式","機械番号","購入先事業者","購入先部署","購入先","製造事業者","製造者部署","製造者","無保証残価","取引先保証残価","残価ｻｲﾄ1","残価DD1","第三者保証残価1","残価ｻｲﾄ2","残価DD2","第三者保証先2","第三者保証先部署","第三者保証先名","転貸先事業者","転貸先部署","転貸先","転貸転売区分","リスク割合","受取手数料","ｻｲﾄ1","支払手数料","ｻｲﾄ2","経理区分","見積現金購入価額","消費税","元本調整額","元本調整理由","元本調整理由内容"],
+        "width" : "5000px",
+        "info" : "m_assetList",
+        "detail" : {
+          "rows" : [
+          ]
+        }
+      },
+      "singleFile" :{
+        "id" : "singleFile",
+        "title" : "書類別",
+        "layout" : "single",
+        "head" : ["書類名","書類番号","進度","作成日","契約日","発送日","受付日","検収日","削除日","受領日","資産連番"],
+        "selectAll" : "true",
+        "width" : "1400px",
+        "info" : "m_fileList",
+        "detail" : {
+          "rows" : [
+          ]
+        }
+      }
+    }
+  }
+};

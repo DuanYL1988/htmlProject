@@ -1,0 +1,216 @@
+/* 元素样式 */
+body {
+  /*background:url(../images/backgoundImg.jpg)no-repeat;*/
+  background: #dcd6e7;
+  background-size:1920px 1200px;
+  background-attachment:fixed;
+}
+
+header {
+  background: #170932ab;
+  color: #0cf5f5;
+  font-size: large;
+  font-weight: bolder;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  line-height: 2em;
+  z-index: 999
+}
+
+main {
+  padding-top:15px;
+}
+
+aside {
+  position: fixed;
+  width: 600px;
+  height: auto;
+  right: 10px;
+  background-size: 100% auto
+}
+
+input[type='text'] {
+  height:22px;
+  width:140px;
+  border:1px solid #949494;
+  border-radius:5px;
+  font-family:ui-rounded;
+}
+
+.dateTime {
+  height:30px;
+  width:180px;
+  border:1px solid #949494;
+  border-radius:5px;
+  font-family:ui-rounded;
+}
+
+textarea {
+  border:1px solid #949494;
+  border-radius:5px;
+  font-family:ui-rounded;
+  font-size:unset;
+}
+
+select {
+  height:27px;
+  width:145px;
+  border:1px solid #949494;
+  border-radius:5px;
+}
+
+thead{
+  background-color:#5252bdcf;
+  color:#f9eeee;
+}
+
+td {
+  border:1px solid #949494;
+  border-collapse: collapse;
+  font-size : small;
+}
+
+/* 图片容器 */
+.imageBox {
+  display : inline-block;
+}
+/* 图片容器 */
+.cellImage {
+  display : inline-block;
+  float : left;
+  width : 100px;
+  height : 100px;
+}
+
+.faceImg {
+  width : 100px;
+  height : 100px;
+  padding-left : 5px;
+  padding-top : 5px;
+}
+
+/* 提示输入错误样式 */
+input[type='text'][class='error'] {
+  border:2px solid red;
+}
+
+.checkItem {
+  width : 150px;
+}
+
+/* radio,checkbox Label */
+.checkItem {
+  display : inline-flex;
+}
+
+/* Layout Design */
+.vertical .inputCell{
+  display:block;
+}
+
+/* 输入区域一行 Div */
+.inputRow {
+  display:flex;
+  padding-left:20px;
+  flex-flow: row wrap;
+}
+
+/* 输入区域一行中单独元素 Div */
+.inputCell {
+  display:flex;
+  padding-top:10px;
+  padding-right:15px;
+}
+
+/* 输入元素的标题 label */
+.inputCell label {
+  display:block;
+  width:140px;
+  color:01018cfc;
+}
+
+/**
+ * 多标签页面
+ */
+.group-layout {
+  padding-top:10px;
+}
+
+/* 标签Title Div */
+.group-title {
+  display:flex;
+  text-align:center;
+}
+
+/* 标签对应显示区域Div */
+.group-section {
+  display:none;
+  border:2px inset #c3baf9c7;
+  background-color:#FFFFFF;
+  width:90%;
+}
+
+/* 标签对应显示区域标题SPAN */
+.layout-title {
+  float:left;
+  width:180px;
+  color:#006BBD;
+  background-color:#E3E5E7;
+  border-left:1px solid #CCCCCC;
+  border-right:1px solid #CCCCCC;
+  border-top:1px solid #CCCCCC;
+}
+
+/* 选中的标签 */
+.current-layout {
+  border-bottom:3px solid #0062E6;
+  background-color:#FFFFFF;
+}
+
+/* 编辑区域 Div */
+.editArea {
+  padding-top:15px;
+}
+
+button,input[type='button'] {
+  height:25px;
+  width:100px;
+  margin-right:10px;
+  background-color:#bfbfeca8;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:bolder;
+}
+
+button:hover,input[type='button']:hover {
+  background-color:#8080fda8;
+}
+
+/* pop up */
+#popup {
+  display:none;
+}
+
+#popupWindow {
+  height : 370px;
+  width : 700px;
+  position : absolute;
+  border-radius : 10px;
+  background-color : #e0edf5;
+  left : 25%;
+  top : 25%;
+  z-index : 900;
+}
+
+#grayup{
+  top : 0px;
+  height : 0px;
+  margin-left : -10px;
+  position : absolute;
+  height : 100%;
+  width : 100%;
+  background-color : rgb(128,128,128,0.8);
+  z-index : 899;
+}

@@ -1,0 +1,395 @@
+var imageList = 
+[
+    {
+        "folder": "Altina_Dawns_Trueblade",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Ayra_F_Normal",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Eirik_F_Legend",
+        "images": [
+            "attact.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Turner_F_NobleandNimble",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Camilla_F_Dream",
+        "images": [
+            "normal.png",
+            "extra.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Sallya_F_WinterFes17",
+        "images": [
+            "normal.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Tiamat_F_Venlent",
+        "images": [
+            "attact.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Byleth_F_FellStar'sDuo",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Plumeria_F_LewdDream",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Cordelia_F_KnightParagon",
+        "images": [
+            "attact.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Ishtar_F_ThunderGoddess",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Camilla_F_Misuki",
+        "images": [
+            "normal.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Aqua_F_Legend",
+        "images": [
+            "normal.png",
+            "attact.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Brunnya_F_DevotedGeneral",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Peony_F_SweetDream",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Julia_F_CrusaderofLight",
+        "images": [
+            "attact.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Kamui_F_Swim17",
+        "images": [
+            "normal.png",
+            "attact.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Naga_DragonDivinity",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Lucina_F_GloriousArcher",
+        "images": [
+            "normal.png",
+            "attact.png",
+            "extra.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Lin_F_LadyOfTheBeach",
+        "images": [
+            "normal.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Aqua_F_NewYear18",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Aqua_F_BlackNormal",
+        "images": [
+            "attact.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Micaiah_F_QueenOfDawn",
+        "images": [
+            "normal.png",
+            "extra.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Selena_F_SandbarFluorspar",
+        "images": [
+            "normal.png",
+            "attact.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Triandra_F_Nightmare",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Camilla_F_SpringFes17",
+        "images": [
+            "normal.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Kamui_F_Dream",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Nagi_F_DragonAvatar",
+        "images": [
+            "attact.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Lin_F_Lengend",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Erincia_F_EstivalPrincess",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Louise_EternalDevotion",
+        "images": [
+            "normal.png",
+            "attact.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Lin_F_ELECTION01",
+        "images": [
+            "normal.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Linde_F_SummerRays",
+        "images": [
+            "normal.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Air_F_Normal",
+        "images": [
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Gunnthrá_F_BeamingSmile",
+        "images": [
+            "normal.png",
+            "attact.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Ursula_F_ClearBlueCrow",
+        "images": [
+            "normal.png",
+            "attact.png",
+            "break.png"
+        ],
+        "level": 0
+    },
+    {
+        "folder": "Lin_F_Ninja-FriendDuo",
+        "images": [
+            "normal.png",
+            "attact.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Camilla_F_LightOfNohr",
+        "images": [
+            "normal.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Lin_F_Wedding17",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Kamui_F_WailingSoul",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Corrin_F_ChildofDusk",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Seiros_SaintofLegend",
+        "images": [
+            "normal.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Sallya_F_Obsessive",
+        "images": [
+            "normal.png",
+            "attact.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Lean_F_Normal",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Dorothea_TwilitHarmony",
+        "images": [
+            "normal.png",
+            "attact.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Selena_Fluorspar",
+        "images": [
+            "normal.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Guinivere_PrincessofBern",
+        "images": [
+            "attact.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Micaiah_DawnWind'sDuo",
+        "images": [
+            "normal.png",
+            "attact.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Ethlyn_GlimmeringLady",
+        "images": [
+            "normal.png",
+            "extra.png"
+        ],
+        "level": 2
+    },
+    {
+        "folder": "Eirik_F_Xmas",
+        "images": [
+            "normal.png",
+            "extra.png",
+            "break.png"
+        ],
+        "level": 1
+    },
+    {
+        "folder": "Erinys_EarnestKnight",
+        "images": [
+            "normal.png",
+            "attact.png"
+        ],
+        "level": 0
+    }
+];

@@ -1,0 +1,148 @@
+/* 红棋 */
+.left {
+  width: 32%;
+  display: inline-block;
+  float: left
+}
+
+#redTeam {
+  overflow-y: scroll;
+  height: 830px
+}
+
+
+/* 黑棋 */
+.right {
+  width: 32%;
+  display: inline-block;
+  float: left;
+  margin-left: 20px
+}
+
+#blackTeam {
+  overflow-y: scroll;
+  height: 830px
+}
+
+/* 棋盘 */
+#mapArea {
+  display: inline-block;
+  float: left;
+  margin-left: 20px
+}
+
+.map {
+  width: 600px;
+  height: 800px;
+  background: url(resources/image/map.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat
+}
+
+.mapCell {
+  width: 100px;
+  height: 100px;
+  float: left
+}
+
+.mapCell.move{
+  border:1px black;
+  background-color:#091cff87;
+}
+
+.mapCell.attact{
+  background-color:#ff090959;
+}
+
+.mapCell img {
+  width: 100px;
+  height: 100px;
+  border: solid 8px;
+  box-sizing: border-box;
+  border-radius: 100%;
+  background-color: white
+}
+
+.mapCell .black{
+  border-color: black;
+}
+
+.mapCell .red{
+  border-color: red;
+}
+
+.mapCell .selected{
+  border-color: green;
+}
+
+
+/* 通用 */
+.row {
+  display: inline-block;
+  margin-top: -3.5px
+}
+
+.img {
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+  margin-left: 2px;
+}
+
+.img :hover {
+  border: solid 2px yellow;
+  box-sizing: border-box;
+}
+
+.img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+/* 战斗详细 */
+
+.redTeamCombat {
+  display: inline-block
+}
+
+.team_member {
+  display: inline
+}
+
+.team_member img {
+  width: 150px;
+  height: 150px;
+}
+
+.memberFace {
+  float: left;
+  height: 160px;
+}
+
+.memberInfo {
+  float: left;
+  height: 160px;
+}
+
+.memberInfo ul {
+  margin:0px;
+}
+
+.memberInfo li {
+  height: 15px;
+  width: 300px;
+  font-size:small
+}
+/*  */
+#screen {
+  position: fixed;
+  width: 600px;
+  height: 800px;
+  background-color: #665e96c7;
+  z-index: 9;
+  top: 30px;
+  left: 630px;
+  display:none;
+  overflow: hidden
+}
