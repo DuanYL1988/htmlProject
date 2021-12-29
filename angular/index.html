@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../../../resources/css/common.css" rel="stylesheet" />
+<script src="../resources/data/servant.json"></script>
+<script src="../../../../resources/js/jquery-3.4.1.min.js"></script>
+<script src="../../../../resources/js/angular.min.js"></script>
+<script>
+  var firstApp = angular.module('firstApp',[]);
+  firstApp.controller('myCtrl',function($scope){
+    $scope.molecular = "1";
+    $scope.Denominator = "1";
+    $scope.objData_name = "DuanYl";
+    
+    var blade = {name:"光",weapon:"单手剑",attr:"光"};
+    $scope.blade = blade;
+    
+    $scope.servantList = servantList;
+  });
+  /* 
+  var objApp = angular.module('objExercise',[]);
+  objApp.controller('objData',function($scope){
+  });
+  */
+  
+  function showUniqueName(name){
+    console.log(name);
+    alert(name);
+  }
+</script>
+</head>
+<body>
+  <!-- [ng-app]定义作用域,不写则无法使用 -->
+  <div ng-app="firstApp" ng-controller="myCtrl">
+    <!-- "-"为angular的语法词,不能直接使用-来连接定义的参数 -->
+    <p>绑定:<input type="text" ng-model="objData_name"></p>
+    <h1>{{objData_name}}</h1>
+    
+    <p>分子:<input type="text" ng-model="molecular"> 分母:<input type="text" ng-model="Denominator"></p>
+    <h2>运算结果:{{molecular/Denominator}}</h2>
+    
+    <p>异刃名:{{blade.name}}  武器:{{blade.weapon}}   属性:{{blade.attr}}</p>
+    
+    <!-- LOOP -->
+    <div class="imageBox" style="width:900px">
+      <div class="cellImage" ng-repeat="servant in servantList">
+        <img class="faceImg" src="../../../../resources/images/fgo/servants/{{servant.name}}/Icon.png" onclick="showUniqueName(this)" />
+      </div>
+    </div>
+  </div>
+  <!-- 
+  <div ng-app="objExercise" ng-controller="objData">
+  </div>
+  -->
+  
+</body>
+</html>

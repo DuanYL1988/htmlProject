@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Table Management</title>
+<link href="resources/common/common.css" rel="stylesheet" />
+<style>
+.orderbyCol:hover {background-color : #5351ca}
+th input {float:left;width:80%}
+.fifterRow {background-color : #dbecb7}
+/* 行内按钮 */
+.rowBtn{width:50px;height:25px;margin-top:0px}
+/* 按钮列 */
+.eventCol{width:120px; display:inline-block;margin-top:0px;}
+table select {height : 22px;float:top}
+#resultArea,.ctrlArea {width:98%;overflow:auto}
+/* */
+.selected-row{background-color:yellow}
+.line-block{padding-top : 5px}
+/* TODO 列固定
+.col-position{position:absolute}
+.re-position{padding-left:30px}
+*/
+</style>
+<script src="resources/lib/jquery-3.4.1.min.js"></script>
+<script src="resources/common/commonService.js"></script>
+<script src="resources/data/heroInput.json"></script>
+<script src="resources/common/commonDatabase.js"></script>
+<script>
+$(function() {
+  searchQuary('');
+});
+</script>
+</head>
+<body>
+  <main>
+    <div>
+      <input type="button" name='create' onClick="createTable()" value='create table'>
+      <input type="button" name='insert' onClick="insertDataList()" value='Insert value'>
+      <input type="button" name='select' onClick="searchQuary(null)" value='show table'>
+    </div>
+    <div class="line-block">
+      <input type="text" id="custQuery" style="width:800px">
+      <button type="button" onclick="excuteCustQuery()">EXCUTE</button>
+    </div>
+    
+    <div id="displayArea" class="line-block">
+      <div class="ctrlArea">
+        <input type="button" name='addLine' onClick="addLine()" value='addLine'></input>
+        <div class="infoArea" style="float:right;padding-right:50px">
+          <label>Page : <input type="text" id="currentPageNo" style="width:20px"></label>/<label id="totalPage">15</label>
+        </div>
+      </div>
+      <div id="resultArea" class="line-block">
+        <table id="mianTbl" cellspacing="0" border="1">
+        </table>
+      </div>
+    </div>
+    <input type="button" name='console' onClick="console.log(selectedData)" value='show Json'>
+  </main>
+</body>
+</html>
