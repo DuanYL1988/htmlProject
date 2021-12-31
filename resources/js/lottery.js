@@ -1,3 +1,50 @@
+/* 输入基类 */
+class input {
+  constructor(el,monery){
+    this.lotteryList = [];
+    el.addEventListener("input",(e)=>{
+      // 组号拼接
+      let winNo = "-" + e.target.value;
+      let preEle = $(el).prev()[0];
+      if (preEle.tagName == 'SPAN'){
+        winNo = $(preEle).prev()[0].value + winNo;
+        console.log(winNo);
+      }
+      this.notifyAll(winNo,monery);
+    });
+  }
+  notifyAll(value,monery) {
+    this.lotteryList.forEach(item=>{
+      item.notify(value,monery);
+    })
+  }
+  addLottery(lottery) {
+    this.lotteryList.push(lottery);
+  }
+}
+
+/* 彩票基类 */
+class lottery extends DocumentFragment {
+  constructor(index,lotteryData){
+    super();
+    this.div = lotteryFactory(index,lotteryData);
+    document.getElementById('lotteryBox').appendChild(this.div);
+  }
+  notify(value,monery) {
+    this.div.classList.toggle("active",this.handle(value,monery));
+  }
+}
+
+/* 中奖彩票 */
+class winLottery extends lottery {
+  constructor(index,lotteryData){
+    super(index,lotteryData);
+    this.txt = lotteryData.unit + '-' +lotteryData.code;
+  }
+  handle(value,monery){
+    return rule(this.txt,value,monery);
+  }
+}
 
 /* 彩票间距 */
 const padding = 25;
@@ -17,7 +64,7 @@ const winRule = {
 var winMoney = 0;
 
 function inputRuleFactory(key,obj){
-  let divEle = createElement('div','','notifyArea','');
+  let divEle = createElement('div','','notify','');
   // title
   let titleEle = createElement('h3','','','');
   titleEle.innerHTML = key;
@@ -29,8 +76,8 @@ function inputRuleFactory(key,obj){
       inputEle.type = 'text';
       divEle.appendChild(inputEle);
       if('unit'==this) {
-        let spanEle = createElement('span','',this,'');
-        spanEle.innerHTML = "-";
+        let spanEle = createElement('span','','','');
+        spanEle.innerHTML = " - ";
         divEle.appendChild(spanEle);
       }
     });
@@ -39,14 +86,14 @@ function inputRuleFactory(key,obj){
 }
 
 $(function(){
-  console.log("aa");
   // 输入
   const iptList = [];
-  iptList.push(new input(document.getElementById("winNumber")));
   //
   $.each(winRule,(key,obj) => {
     let divEle = inputRuleFactory(key,obj);
-    iptList.push(new input(divEle));
+    $.each($(divEle).find(".number"),function() {
+      iptList.push(new input(this,obj.monery));
+    });
     document.getElementById("notifyArea").appendChild(divEle);
   });
   // 取得数据
@@ -82,15 +129,17 @@ function lotteryFactory(index,lotteryData){
 }
 
 /* 中奖判断 */
-function rule(ticket,win){
-  let winUnit = win.split('-')[0];
-  let winNo = win.split('-')[1];
-  let ticketUnit = ticket.split('-')[0];
-  let ticketNo = ticket.split('-')[1];
-  if(isNotEmpty(winUnit)){
-    return match(ticketUnit,winUnit) && match(ticketNo,winNo);
+function rule(ticket,win,money){
+  let winFlag = false;
+  if(isNotEmpty(win.split('-')[0])){
+    winFlag = match(ticket.split('-')[0],win.split('-')[0]) && match(ticket.split('-')[1],win.split('-')[1]);
+  } else {
+    winFlag = match(ticket.split('-')[1],win.split('-')[1]);
   }
-  return match(ticketNo,winNo);
+  if(winFlag){
+    winMoney = winMoney + money;
+  }
+  return winFlag;
 }
 
 function match(ticket,win){
