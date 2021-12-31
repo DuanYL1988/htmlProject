@@ -1,0 +1,135 @@
+/* */
+.btnSearchItem{
+  position: absolute;
+  z-index: 10;
+  left: 150px;
+  top: -30px;
+}
+.resultArea {
+  border:2px solid #949494;
+  border-radius : 0px 0px 17px 17px;
+  width : 400px;
+  height : 200px;
+  background : #ffffffb8;
+}
+.btnSearchItem:hover{
+  top: 0px;
+}
+
+/* 页面全体 */
+#activity{
+  background:url(../images/backgound_v.jpg);
+  width : 800px;
+  height : 950px;
+  margin: -23px 0px 0px -8px;
+}
+/* 上方按钮区域 */
+#topBtnArea{
+  position: fixed;
+  margin: 20px 0px 0px 20px;
+  display: grid;
+  z-index:9;
+}
+/* 立绘区域 */
+#heroIllustration {
+  position : absolute;
+}
+#heroIllustration {
+  position : absolute;
+  top:-0px;
+}
+#imgName {
+ width:780px;
+}
+/* 具体信息区域 */
+#heroStatusArea {
+  position : fixed;
+  width : 700px;
+  height : 350px;
+  margin-top : 550px;
+  margin-left : 40px;
+  background-color : #1e1e1e87;
+  border-radius : 20px;
+}
+/* 称号和名称区域 */
+#titleArea{
+  background:url(../images/bk_title.png)no-repeat;
+  background-size:350px 200px;
+  width : 350px;
+  height : 200px;
+  margin-top: -225px;
+}
+/* 称号和名称区域-文字 */
+#titleArea label {
+  display: grid;
+  padding-left: 85px;
+  padding-top: 50px;
+  text-shadow:#003 5px 5px 8px;
+  font-size: 30px;
+  font-weight: bolder;
+  color: white;
+}
+/* 具体信息文字列 */
+#codeImageArea {
+  background:url(../images/bk_attr.png)no-repeat;
+  background-size:400px 50px;
+  width : 400px;
+  height : 50px;
+  margin-left: 20px;
+}
+/* 数值区域 */
+#statusArea {
+  margin-left: 40px;
+  margin-top: 40px;
+  padding-left: 70px;
+  width: 860px;
+  border-radius : 15px;
+  background: #1e121285;
+}
+/* 行 */
+.statusAndSkillRow {
+  display: flex;
+  padding-top: 10px;
+  padding-left : 40px;
+}
+/* 数值区域块 */
+.status {
+  background:url(../images/bk_attr.png)no-repeat;
+  background-size:200px 40px;
+  width : 200px;
+  height : 40px;
+}
+/* 技能区域块 */
+.skill {
+  background:url(../images/bk_skill.png)no-repeat;
+  background-size:300px 40px;
+  width : 300px;
+  height : 40px;
+}
+/* 武器背景图 */
+.weapon {
+  background:url(../images/bk_weapon.png)no-repeat;
+  background-size:300px 40px;
+  width : 300px;
+  height : 40px;
+}
+.status {
+  font-size: 30px;
+  padding-left: 40px;
+}
+/* 说明文字列 */
+.title{
+  font-weight: bolder;
+  color : white;
+}
+/* 值 */
+.value{
+  padding-left: 30px;
+  color : yellow;
+}
+/* 武器 */
+.skill,.weapon label {
+  font-size: 25px;
+  padding-left: 75px;
+  padding-top: 3px;
+}

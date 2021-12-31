@@ -3,24 +3,19 @@ const version = '1.0';
 const displayName = 'Display Information';
 const maxSize = 5*1024*1024;
 const positionColIndex = 0;
-var db = openDatabase(shortName,version,displayName,maxSize);
-console.log(db);
-
-// 列List转为列对象MAP
-const columnMap = transListToMap(jsonData.columns,'name',true);
 
 // 检索设定参数
 var setUp = {
   "head" : "",
   "tableWidth" : "",
-  "table" : jsonData.tableName,
+  "table" : "",
   "condition" : "",
   "paramters" : [],
   "orderBy" : "",
   "pageNo" : "1",
   "pageSize" : "15",
-  "orderByTitle" : "true",
-  "fifter" : "true",
+  "orderByTitle" : "",
+  "fifter" : "",
   "selectAll" : "true",
 };
 
@@ -51,7 +46,7 @@ function createTable(){
  */
 function insertDataList() {
   let tblNm = jsonData.tableName;
-  $.each(jsonData.dataList,function(i,recoderObj){
+  $.each(jsonData.dataList,(i,recoderObj) => {
     insertData(tblNm,recoderObj);
   });
 }
@@ -62,12 +57,10 @@ function insertDataList() {
 function insertRow(btnEle){
   let recoderObj = {};
   let rowEle = $(btnEle).parents()[1];
-  $.each($(rowEle).find("input"),function(){
+  $.each($(rowEle).find("input"),function() {
     recoderObj[this.name] = this.value;
   });
-  console.log(recoderObj);
-  insertData(jsonData.tableName,recoderObj);
-  
+  insertData(setUp.table,recoderObj);
   reflashTable(searchedQuary);
 }
 
@@ -75,23 +68,16 @@ function insertRow(btnEle){
  *
  */
 function insertData(tableName,recoderObj) {
-  //let keys = Object.keys(recoderObj);
-  let keys = jsonData.columns;
   let colSql = "insert into "+ tableName +"("
   let valSql = " values (";
   let paramters = [];
-  $.each(keys,function(i,col){
-    colSql += this.name;
-    paramters.push(recoderObj[this.name]);
-    if (i < keys.length - 1) {
+  $.each(recoderObj,(column,value)=>{
+    colSql += column;
+    paramters.push(value);
       colSql += ",";
       valSql += "?,";
-    } else {
-      colSql += ")";
-      valSql += "?)";
-    }
   });
-  let insertQuery = colSql + valSql;
+  let insertQuery = colSql.substring(0,colSql.length-1) + ")" + valSql.substring(0,valSql.length-1) + ")";
   executeQuary(insertQuery,paramters);
 }
 
@@ -192,17 +178,18 @@ function getSelectQuary() {
  *
  */
 function searchQuary() {
+  //
+  if(isEmpty($("#selectedTable").val())){
+    return;
+  }
+  setUp.table = $("#selectedTable").val();
+  setUp.pageSize = $("#pageSize").val();
+  setUp.orderByTitle = document.getElementById('orderByFlag') ? 'true' : '';
+  setUp.fifter = document.getElementById('fifterFlag') ? 'true' : '';
   executeQuary(getSelectQuary(),[],function(result){
     selectedData = result.rows;
     makeTableElement(result,"mianTbl");
   });
-}
-
-/** 翻页 
- *
- */
-function pageChange(){
-  setUp.pageNo = $("#currentPageNo").val();
 }
 
 /** 自定义检索
@@ -273,12 +260,12 @@ function reflashTable(sql) {
   });
 }
 
-/** WebSql执行sql
+/** WebSql执行sql,其他数据库时使用ajax请求用法基本一致
  *
  */
 function executeQuary(query,paramters,callback){
   console.log(query);
-  //let db = openDatabase(shortName,version,displayName,maxSize);
+  let db = openDatabase(shortName,version,displayName,maxSize);
   db.transaction(tx => {
     tx.executeSql(query,paramters,
       (tx,result) => {
@@ -344,15 +331,12 @@ function makeTableElement(dataList,tblEleId){
     
     // fifter
     let fifterTh = createElement("th","",thClass,"");
-    if (isNotEmpty(columnMap[this])){
-      
-      let widthSize = columnMap[this].length;
-      // 设置id属性,后面追加 更新入力框设定name用
-      let inputCol = createElement("input","","","fifter_"+this);
-      // 筛选事件
-      inputCol.setAttribute('onChange','fifterRows("'+this+'",this)')
-      fifterTh.appendChild(inputCol);
-    }
+    // 设置id属性,后面追加 更新入力框设定name用
+    let inputCol = createElement("input","","","fifter_"+this);
+    // 筛选事件
+    inputCol.setAttribute('onChange','fifterRows("'+this+'",this)')
+    fifterTh.appendChild(inputCol);
+
     fifterRow.appendChild(fifterTh);
   });
   // 行事件

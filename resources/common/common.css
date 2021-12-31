@@ -39,6 +39,16 @@ input[type='text'] {
   font-family:ui-rounded;
 }
 
+input[type='image'] {
+  filter: opacity(0.5);
+  transform : scale(0.9);
+}
+
+input[type='image']:hover {
+  filter: opacity(1);
+  transform : scale(1.1);
+}
+
 .dateTime {
   height:30px;
   width:180px;
@@ -213,4 +223,19 @@ button:hover,input[type='button']:hover {
   width : 100%;
   background-color : rgb(128,128,128,0.8);
   z-index : 899;
+}
+
+/* 自定义检索框样式 */
+.btnSearchItem input {
+  height:30px;
+  border-radius : 15px;
+}
+
+.btnSearchItem button {
+  background-color:#9d9dfd;
+  height:34px;
+  border-radius : 0px 17px 17px 0px;
+  margin-left:-100px;
+  border:1px solid #949494;
+  padding-top:2px;
 }

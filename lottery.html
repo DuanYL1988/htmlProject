@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>彩票</title>
+<link href="resources/common/common.css" rel="stylesheet" />
+<style>
+#lotteryBox {
+  margin-left : -450px;
+}
+.lottery {
+  background : url(resources/images/lottery.jpg);
+  background-size : 600px 200px;
+  border:2px solid #949494;
+  width : 600px;
+  height : 200px;
+  position : absolute;
+}
+.lottery:hover {
+  margin-left:400px;
+}
+.lottery span {
+  position : inherit;
+  font-size : 25px;
+  color : black;
+  margin-left : 475px;
+  font-family: "Arial Black";
+}
+.lottery .unit {
+  margin-top : 80px;
+}
+.lottery .number {
+  margin-top : 125px;
+  margin-left : 460px;
+}
+</style>
+<script src="resources/lib/jquery-3.4.1.min.js"></script>
+<script src="resources/common/commonService.js"></script>
+<script src="resources/common/commonDatabase.js"></script>
+<script>
+const padding = 25;
+$(function(){
+  let sql = "select * from caipiao order by unit,code";
+  executeQuary(sql,[],(result) =>{
+    createLotterys(result);
+  });
+});
+
+function createLotterys(result){
+  let box = $('#lotteryBox')[0];
+  $.each(result.rows,function(index){
+    let lottery = lotteryFactory(this);
+    lottery.style.top = (index * padding + 10) + "px";
+    box.appendChild(lottery);
+  });
+}
+
+function lotteryFactory(lotteryObj){
+  let lottery = createElement('div','','lottery','');
+  let unitEle = createElement('span','','unit','');
+  unitEle.innerHTML = lotteryObj.unit;
+  let numberEle = createElement('span','','number','');
+  numberEle.innerHTML = lotteryObj.code;
+  lottery.appendChild(unitEle);
+  lottery.appendChild(numberEle);
+  return lottery;
+}
+</script>
+</head>
+<body>
+  <!-- 彩票组 -->
+  <div id="lotteryBox">
+    <!-- 彩票 -->
+  </div>
+  
+  <!-- 中奖规则区 -->
+</body>
+</html>
