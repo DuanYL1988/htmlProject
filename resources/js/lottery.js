@@ -1,55 +1,3 @@
-<!DOCTYPE html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>彩票</title>
-<link href="resources/common/common.css" rel="stylesheet" />
-<link href="resources/css/lottery.css" rel="stylesheet" />
-
-<script src="resources/lib/jquery-3.4.1.min.js"></script>
-<script src="resources/common/commonService.js"></script>
-<script src="resources/common/commonDatabase.js"></script>
-<script>
-/* 输入基类 */
-class input {
-  constructor(el,monery){
-    this.lotteryList = [];
-    el.addEventListener("input",(e)=>{
-      let winNo = $("#winUnit").val() + "-" + e.target.value;
-      this.notifyAll(winNo,monery);
-    });
-  }
-  notifyAll(value,monery) {
-    this.lotteryList.forEach(item=>{
-      item.notify(value,monery);
-    })
-  }
-  addLottery(lottery) {
-    this.lotteryList.push(lottery);
-  }
-}
-
-/* 彩票基类 */
-class lottery extends DocumentFragment {
-  constructor(index,lotteryData){
-    super();
-    this.div = lotteryFactory(index,lotteryData);
-    document.getElementById('lotteryBox').appendChild(this.div);
-  }
-  notify(value,monery) {
-    this.div.classList.toggle("active",this.handle(value));
-  }
-}
-
-/* 中奖彩票 */
-class winLottery extends lottery {
-  constructor(index,lotteryData){
-    super(index,lotteryData);
-    this.txt = lotteryData.unit + '-' +lotteryData.code;
-  }
-  handle(value){
-    return rule(this.txt,value);
-  }
-}
 
 /* 彩票间距 */
 const padding = 25;
@@ -65,7 +13,7 @@ const winRule = {
   "levelSeven" : {"count":1,"rule":["number"],"monery":0.03}
 };
 
-/*  */
+/* 中奖金额 */
 var winMoney = 0;
 
 function inputRuleFactory(key,obj){
@@ -91,6 +39,7 @@ function inputRuleFactory(key,obj){
 }
 
 $(function(){
+  console.log("aa");
   // 输入
   const iptList = [];
   iptList.push(new input(document.getElementById("winNumber")));
@@ -147,22 +96,3 @@ function rule(ticket,win){
 function match(ticket,win){
   return ticket.substring(ticket.length-win.length) == win && isNotEmpty(win);
 }
-
-</script>
-</head>
-<body>
-  <!-- 彩票组 -->
-  <div id="lotteryBox">
-    <!-- 彩票 -->
-  </div>
-
-  <!-- 中奖规则区 -->
-  <div id="notifyArea"> 
-    <div>
-      <h3>中奖号码</h3>
-      <input class="unit" type="text" id="winUnit" />-
-      <input type="text" id="winNumber" />
-    </div>
-  </div>
-</body>
-</html>
