@@ -182,7 +182,9 @@ function searchQuary() {
   if(isEmpty($("#selectedTable").val())){
     return;
   }
-  setUp.table = $("#selectedTable").val();
+  let selectedVal = $("#selectedTable").val();
+  setUp.table = selectedVal.split(',')[0];
+  setUp.tableWidth = selectedVal.split(',')[1] + "px";
   setUp.pageSize = $("#pageSize").val();
   setUp.orderByTitle = document.getElementById('orderByFlag') ? 'true' : '';
   setUp.fifter = document.getElementById('fifterFlag') ? 'true' : '';
@@ -270,6 +272,7 @@ function executeQuary(query,paramters,callback){
     tx.executeSql(query,paramters,
       (tx,result) => {
         console.log('SQL-success:' + result);
+        console.dir(result);
         if (typeof callback == 'function') {
           callback(result);
         }

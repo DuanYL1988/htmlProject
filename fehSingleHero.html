@@ -14,12 +14,15 @@
 </head>
 <body>
   <main>
-      <div class="btnSearchItem" style="position:absolute">
-        <input type="text" style="width:400px" id="custQuery" style="width:800px">
-        <button type="button" onclick="excuteCustQuery()">检索</button>
-        <div class="resultArea" style="display:none">
-        </div>
+    <!-- 检索区 -->
+    <div class="btnSearchItem" style="position:absolute">
+      <input id="searchTxt" type="text" oninput="fifterResult(this)" style="width:400px" id="custQuery" style="width:800px">
+      <!--<button type="button" onclick="fifterResult()">检索</button>-->
+      <div id="resultArea" style="display:none">
+
       </div>
+    </div>
+    <!-- 主页面 -->
     <div id='activity'>
       <div id='topBtnArea'>
         <input type="image" src="resources/images/btn-back.png" width="80px"/>
@@ -28,6 +31,7 @@
       <div id='heroIllustration'>
         <img id="imgName" src='resources/images/illustration/feh/Micaiah_RadiantQueen/normal.png' />
       </div>
+      <!-- 面板 -->
       <div id='heroStatusArea'>
         <div id='titleArea'>
           <label id="titleName">明日之光</label>
@@ -85,7 +89,14 @@
           </div>
         </div>
       </div>
-      <div class='bottomBtnArea'></div>
+      <div id='bottomBtnArea'>
+        <ul>
+          <li class='li-active' onclick='setIllustration(0)'></li>
+          <li onclick='setIllustration(1)'></li>
+          <li onclick='setIllustration(2)'></li>
+          <li onclick='setIllustration(3)'></li>
+        </ul>
+      </div>
     </div>
   </main>
 </body>

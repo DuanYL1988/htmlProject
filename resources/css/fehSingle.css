@@ -5,12 +5,17 @@
   left: 150px;
   top: -30px;
 }
-.resultArea {
+#resultArea {
   border:2px solid #949494;
   border-radius : 0px 0px 17px 17px;
   width : 400px;
-  height : 200px;
   background : #ffffffb8;
+}
+.resultEow {
+  border-bottom: 1px solid #e56f6f;
+}
+.resultEow:hover {
+  background : #7473a7cf;
 }
 .btnSearchItem:hover{
   top: 0px;
@@ -20,7 +25,7 @@
 #activity{
   background:url(../images/backgound_v.jpg);
   width : 800px;
-  height : 950px;
+  height : 940px;
   margin: -23px 0px 0px -8px;
 }
 /* 上方按钮区域 */
@@ -46,7 +51,7 @@
   position : fixed;
   width : 700px;
   height : 350px;
-  margin-top : 550px;
+  margin-top : 530px;
   margin-left : 40px;
   background-color : #1e1e1e87;
   border-radius : 20px;
@@ -68,6 +73,12 @@
   font-size: 30px;
   font-weight: bolder;
   color: white;
+}
+/* 下方区域 */
+#bottomBtnArea {
+  position: fixed;
+  bottom: 30px;
+  left: 300px;
 }
 /* 具体信息文字列 */
 #codeImageArea {
@@ -132,4 +143,15 @@
   font-size: 25px;
   padding-left: 75px;
   padding-top: 3px;
+}
+
+ul li {
+  float: left;
+  margin-left: 40px;
+  color: white;
+  list-style: circle;
+  transform: scale(2.5);
+}
+ul .li-active,ul li:hover {
+  list-style: disc;
 }
