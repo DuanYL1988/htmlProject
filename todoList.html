@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>待办事项</title>
+<style>
+.reoderRow {
+  padding-left : 20px;
+}
+.head{
+  float : left;
+}
+.main{
+  padding-left : 20px;
+  border-bottom: 1px solid #e56f6f;
+  padding-top : 2px;
+}
+.complate {
+  background:#adadadd9;
+}
+.main:hover {
+  background:yellow;
+}
+.name {
+  padding-left : 20px;
+  color:blue;
+}
+.value {
+  padding-left : 5px;
+  color:#51661c;
+}
+</style>
+<script src="resources/lib/jquery-3.4.1.min.js"></script>
+<script src="resources/common/commonService.js"></script>
+<script src="resources/common/commonDatabase.js"></script>
+<script>
+var todoList;
+var todoMapByNode;
+$(function() {
+  let sql = "select * from todo WHERE 1 = 1 ORDER BY id";
+  executeQuary(sql,[],(result) => {
+    editTodoList(result);
+    let parentEle = document.getElementById('displayArea');
+    createTodoList(parentEle,'root');
+  });
+});
+
+function editTodoList(result) {
+  todoList = result.rows;
+  todoMapByNode = transListToMap(todoList,"parent");
+  console.log(todoMapByNode);
+}
+
+function createTodoList(parentEle,nodeName) {
+  $.each(todoMapByNode[nodeName],function(){
+    // html
+    let rowEle = statusFactory(this);
+    if(isNotEmpty(todoMapByNode[this.code])){
+      createTodoList(rowEle,this.code);
+    }
+    parentEle.appendChild(rowEle);
+  });
+}
+
+function statusFactory(todoObject) {
+  let rowEle = createElement('div',todoObject.id,'reoderRow','');
+  // Title
+  let headEle = createElement('div','','head','');
+  headEle.innerHTML = "●";
+  rowEle.appendChild(headEle);
+  // Info 
+  let classNm = '03' == todoObject.status ? ' complate' : '';
+  let infoEle = createElement('div','','main'+classNm,'');
+  labelFactory(infoEle,'Task:',todoObject.name);
+  labelFactory(infoEle,'Status:',todoObject.status);
+  labelFactory(infoEle,'Start:',todoObject.startDate);
+  labelFactory(infoEle,'End:',todoObject.endDate);
+  infoEle.setAttribute('onclick','openChild(this,'+todoObject.id+')');
+  rowEle.appendChild(infoEle);
+  
+  return rowEle;
+}
+
+/**
+ *
+ */
+function labelFactory(parentEle,keyNm,value){
+  let labelEle1 = createElement('label','','name','');
+  labelEle1.innerHTML = keyNm;
+  parentEle.appendChild(labelEle1);
+  let labelEle2 = createElement('label','','value','');
+  labelEle2.innerHTML = value;
+  parentEle.appendChild(labelEle2);
+}
+
+function openChild(infoEle,id){
+  let rowEle = $(infoEle).parents()[0];
+  let childList = $(rowEle).find("div[class='reoderRow']");
+  if(childList.length == 0){
+    console.log('具体任务');
+  } else {
+    console.log('有子任务');
+    // 兄弟元素全关闭
+    let parentNode = $(rowEle).parents()[0];
+    $(parentNode).find("div[class='reoderRow']").children().hide();
+    // 本行表示
+    $(rowEle).show();
+    $(rowEle).children().show();
+  }
+}
+
+</script>
+</head>
+<body>
+  <main id="displayArea" style="width:900px;background-color:#dfffdf;">
+
+  </main>
+</body>
+</html>

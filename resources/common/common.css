@@ -1,11 +1,9 @@
 /* 元素样式 */
 body {
-  /*background:url(../images/backgoundImg.jpg)no-repeat;*/
   background: #dcd6e7;
-  background-size:1920px 1200px;
-  background-attachment:fixed;
 }
 
+/* 头部 */
 header {
   background: #170932ab;
   color: #0cf5f5;
@@ -19,10 +17,12 @@ header {
   z-index: 999
 }
 
+/* 主要内容 */
 main {
   padding-top:15px;
 }
 
+/* 侧边栏 */
 aside {
   position: fixed;
   width: 600px;
@@ -31,12 +31,32 @@ aside {
   background-size: 100% auto
 }
 
+/* 输入框 */
 input[type='text'] {
   height:22px;
   width:140px;
   border:1px solid #949494;
   border-radius:5px;
   font-family:ui-rounded;
+}
+
+/* 图片按钮 */
+input[type='image'] {
+  transform : scale(0.9);
+  animation : aniBtn 3s infinite;
+}
+/* 图片按钮-悬停 */
+input[type='image']:hover {
+  transform : scale(1.1);
+}
+/* 图片按钮-动画 */
+@keyframes aniBtn {
+  50% {filter: opacity(0.5);}
+  60% {filter: opacity(0.6);}
+  70% {filter: opacity(0.7);}
+  80% {filter: opacity(0.8);}
+  90% {filter: opacity(0.9);}
+  100% {filter: opacity(1);}
 }
 
 .dateTime {
@@ -213,4 +233,19 @@ button:hover,input[type='button']:hover {
   width : 100%;
   background-color : rgb(128,128,128,0.8);
   z-index : 899;
+}
+
+/* 自定义检索框样式 */
+.btnSearchItem input {
+  height:30px;
+  border-radius : 15px;
+}
+
+.btnSearchItem button {
+  background-color:#9d9dfd;
+  height:34px;
+  border-radius : 0px 17px 17px 0px;
+  margin-left:-100px;
+  border:1px solid #949494;
+  padding-top:2px;
 }

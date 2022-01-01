@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Table Management</title>
+<title>数据管理</title>
 <link href="resources/common/common.css" rel="stylesheet" />
 <style>
+/* 可排序的head 悬停效果 */
 .orderbyCol:hover {background-color : #5351ca}
+/* 筛选输入框 */
 th input {float:left;width:80%}
+/* 筛选列背景色 */
 .fifterRow {background-color : #dbecb7}
 /* 行内按钮 */
 .rowBtn{width:50px;height:25px;margin-top:0px}
 /* 按钮列 */
 .eventCol{width:120px; display:inline-block;margin-top:0px;}
 table select {height : 22px;float:top}
+/* 超出宽度滚动条 */
 #resultArea,.ctrlArea {width:98%;overflow:auto}
-/* */
+/* 高亮选中行 */
 .selected-row{background-color:yellow}
-.line-block{padding-top : 5px}
+.line-block{padding-top : 15px}
 /* TODO 列固定
 .col-position{position:absolute}
 .re-position{padding-left:30px}
@@ -23,31 +27,58 @@ table select {height : 22px;float:top}
 </style>
 <script src="resources/lib/jquery-3.4.1.min.js"></script>
 <script src="resources/common/commonService.js"></script>
+<!-- 建表数据 -->
 <script src="resources/data/heroInput.json"></script>
+
 <script src="resources/common/commonDatabase.js"></script>
 <script>
 $(function() {
-  searchQuary('');
+  //setUp.table = jsonData.tableName;
 });
 </script>
 </head>
 <body>
   <main>
     <div>
-      <input type="button" name='create' onClick="createTable()" value='create table'>
-      <input type="button" name='insert' onClick="insertDataList()" value='Insert value'>
-      <input type="button" name='select' onClick="searchQuary(null)" value='show table'>
+      <input type="button" name='create' onClick="createTable()" value='新建表'>
+      <input type="button" name='insert' onClick="insertDataList()" value='批量插入数据'>
     </div>
+    
     <div class="line-block">
+      <label>选择表</label>
+      <select id="selectedTable" onchange="searchQuary()">
+        <option value=''></option>
+        <option value='fireemblem_hero,4000'>火纹英雄</option>
+        <option value='CODE_MASTER,800'>CODE</option>
+        <option value='TODO,800'>待办事项</option>
+        <option value='caipiao,800'>彩票</option>
+      </select>
+      <label style="padding-left:50px"></label>
+      <input id='orderByFlag'  checked="true" type='checkbox' onclick="searchQuary()">
+      <label >支持排序</label>
+      <input id='fifterFlag' checked="true" type='checkbox' onclick="searchQuary()">
+      <label>支持筛选</label>
+      <label style="padding-left:50px">每页表示</label>
+      <select style="width:50px" id="pageSize" onchange="searchQuary()">
+        <option value="10">10</option>
+        <option value="15" selected='true'>15</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    
+    <div class="line-block btnSearchItem">
       <input type="text" id="custQuery" style="width:800px">
-      <button type="button" onclick="excuteCustQuery()">EXCUTE</button>
+      <button type="button" onclick="excuteCustQuery()">检索</button>
     </div>
     
     <div id="displayArea" class="line-block">
       <div class="ctrlArea">
-        <input type="button" name='addLine' onClick="addLine()" value='addLine'></input>
-        <div class="infoArea" style="float:right;padding-right:50px">
-          <label>Page : <input type="text" id="currentPageNo" style="width:20px"></label>/<label id="totalPage">15</label>
+        <input type="button" name='addLine' onClick="addLine()" value='插入新数据'></input>
+        <div class="infoArea" style="position: fixed;left: 800px;margin-top: -25px;">
+          Page : 
+          <input type="text" id="currentPageNo" style="width:20px"  value='1' onchange="searchQuary()">
+          /
+          <label id="totalPage"></label>
         </div>
       </div>
       <div id="resultArea" class="line-block">
@@ -55,7 +86,7 @@ $(function() {
         </table>
       </div>
     </div>
-    <input type="button" name='console' onClick="console.log(selectedData)" value='show Json'>
+    <input type="button" name='console' onClick="console.log(selectedData)" value='表示检索结果JSON'>
   </main>
 </body>
 </html>

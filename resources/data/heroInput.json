@@ -1,5 +1,5 @@
 /*
-var jsonData = {
+const jsonData = {
   "tableName" : "FIREEMBLEM_HERO",
   "columns" : [
     {"name":"masterId","length":"11" ,"type":"varchar","fifterWidth" : "20px","title":"","inputType":"","hide":"true"},
@@ -39,28 +39,162 @@ var jsonData = {
   "dataList" : [
 	
   ]
-};*/
+};
+*/
 
-var jsonData = {
+/* 
+const jsonData = {
   "tableName" : "CODE_MASTER",
   "columns" : [
-    {"name":"categoaryId" ,"length":"4" ,"type":"varchar","fifterWidth" : "30px","inputType":"","hide":"true"},
-    {"name":"categoaryName" ,"length":"50" ,"type":"varchar","fifterWidth" : "100px","inputType":"","hide":"true"},
-    {"name":"code" ,"length":"20" ,"type":"varchar","fifterWidth" : "30px","inputType":"","hide":"true"},
-    {"name":"value" ,"length":"50" ,"type":"varchar","fifterWidth" : "100px","inputType":"","hide":"true"}
+    {"name":"imageName" ,"length":"50" ,"type":"varchar"},
+    {"name":"categoaryId" ,"length":"4" ,"type":"varchar"},
+    {"name":"categoaryName" ,"length":"50" ,"type":"varchar"},
+    {"name":"code" ,"length":"20" ,"type":"varchar"},
+    {"name":"value" ,"length":"50" ,"type":"varchar"}
   ],
   "dataList" : [
-    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Red" , "value" : "红色"},
-    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Blue" , "value" : "蓝色"},
-    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Green" , "value" : "绿色"},
-    {"categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "None" , "value" : "无"},
-    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Foot" , "value" : "步行"},
-    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Arrom" , "value" : "重装"},
-    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Knight" , "value" : "骑兵"},
-    {"categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Fly" , "value" : "飞行"},
-    {"categoaryId" : "0003" ,"categoaryName" : "" ,"code" : "" , "value" : "3"},
-    {"categoaryId" : "1001" ,"categoaryName" : "资产类型" ,"code" : "14" , "value" : "When"}
+    {"imageName" : "","categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Red" , "value" : "红色"},
+    {"imageName" : "","categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Blue" , "value" : "蓝色"},
+    {"imageName" : "","categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "Green" , "value" : "绿色"},
+    {"imageName" : "","categoaryId" : "0001" ,"categoaryName" : "颜色" ,"code" : "None" , "value" : "无"},
+    {"imageName" : "","categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Foot" , "value" : "步行"},
+    {"imageName" : "","categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Arrom" , "value" : "重装"},
+    {"imageName" : "","categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Knight" , "value" : "骑兵"},
+    {"imageName" : "","categoaryId" : "0002" ,"categoaryName" : "移动类型" ,"code" : "Fly" , "value" : "飞行"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "R-W" , "value" : "剑"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "B-W" , "value" : "枪"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "G-W" , "value" : "斧"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "N-W" , "value" : "无色弓"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "N-Dart" , "value" : "暗器"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "N-Staff" , "value" : "杖"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "R-M" , "value" : "红魔法"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "B-M" , "value" : "蓝魔法"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "G-M" , "value" : "绿魔法"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "N-M" , "value" : "无属性魔法"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "R-BOW" , "value" : "红弓"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "B-BOW" , "value" : "蓝弓"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "G-BOW" , "value" : "绿弓"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "R-D" , "value" : "红龙息"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "B-D" , "value" : "蓝龙息"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "G-D" , "value" : "绿龙息"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "N-D" , "value" : "无色龙息"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "R-B" , "value" : "红兽爪"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "B-B" , "value" : "蓝兽爪"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "G-B" , "value" : "绿兽爪"},
+    {"imageName" : "","categoaryId" : "0003" ,"categoaryName" : "武器" ,"code" : "N-B" , "value" : "无色兽爪"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "01" , "value" : "暗黑龙与光之剑"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "02" , "value" : "外传-索菲亚复苏"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "03" , "value" : "圣战系谱"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "04" , "value" : "多拉基亚776"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "05" , "value" : "封印之剑"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "06" , "value" : "烈火之剑"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "07" , "value" : "圣魔光石"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "08" , "value" : "苍炎轨迹"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "09" , "value" : "晓之巫女"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "10" , "value" : "命运"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "11" , "value" : "IF"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "12" , "value" : "外传Echors"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "13" , "value" : "风花雪月"},
+    {"imageName" : "","categoaryId" : "0004" ,"categoaryName" : "作品" ,"code" : "14" , "value" : "手游"},
+    {"imageName" : "","categoaryId" : "0005" ,"categoaryName" : "种族" ,"code" : "Human" , "value" : "人"},
+    {"imageName" : "","categoaryId" : "0005" ,"categoaryName" : "种族" ,"code" : "Dragon" , "value" : "龙"},
+    {"imageName" : "","categoaryId" : "0005" ,"categoaryName" : "种族" ,"code" : "Burst" , "value" : "兽"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Fire" , "value" : "火"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Water" , "value" : "水"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Wind" , "value" : "风"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Earth" , "value" : "地"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Light" , "value" : "光"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Dark" , "value" : "暗"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Magic" , "value" : "理"},
+    {"imageName" : "","categoaryId" : "0006" ,"categoaryName" : "祝福" ,"code" : "Sky" , "value" : "天"}
   ]
 };
+*/
+
+/* 
+const jsonData = {
+  "tableName" : "TODO",
+  "columns" : [
+    {"name":"code" ,"length":"10" ,"type":"varchar"},
+    {"name":"name" ,"length":"50" ,"type":"varchar"},
+    {"name":"step" ,"length":"5" ,"type":"varchar"},
+    {"name":"parent" ,"length":"50" ,"type":"varchar"},
+    {"name":"status" ,"length":"20" ,"type":"varchar"},
+    {"name":"startDate" ,"length":"20" ,"type":"varchar"},
+    {"name":"endDate" ,"length":"20" ,"type":"varchar"}
+  ],
+  "dataList" : [
+    {"code":"webSql" ,"name" : "本地数据管理","step" : "1" ,"parent" : "root" ,"status" : "02" , "startDate" : "2021/12/30", "endDate" : ""},
+    {"code":"pageA" ,"name" : "DB管理页面","step" : "1.1" ,"parent" : "webSql" ,"status" : "01" , "startDate" : "2021/12/30", "endDate" : ""},
+    {"code":"pageA-1" ,"name" : "建表导入数据","step" : "1.1.1" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-2" ,"name" : "查找功能","step" : "1.1.2" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-3" ,"name" : "排序筛选功能","step" : "1.1.3" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-4" ,"name" : "追加记录","step" : "1.1.4" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-5" ,"name" : "更新记录","step" : "1.1.5" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-6" ,"name" : "DB更新","step" : "1.1.6" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-7" ,"name" : "自定义执行SQL","step" : "1.1.7" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-8" ,"name" : "再刷新","step" : "1.1.8" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-9" ,"name" : "自定义检索时再刷新","step" : "1.1.9" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageA-10" ,"name" : "自定义显示执行结果","step" : "1.1.10" ,"parent" : "pageA" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageB" ,"name" : "火纹英雄详细","step" : "2" ,"parent" : "webSql" ,"status" : "02" , "startDate" : "2021/12/30", "endDate" : ""},
+    {"code":"pageB-1" ,"name" : "素材准备(photoshop)","step" : "2.1" ,"parent" : "webSql" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageB-2" ,"name" : "页面设计(css)","step" : "2.2" ,"parent" : "webSql" ,"status" : "03" , "startDate" : "2021/12/30", "endDate" : "2021/12/30"},
+    {"code":"pageB-3" ,"name" : "数据动态绑定(angular)","step" : "2.3" ,"parent" : "webSql" ,"status" : "01" , "startDate" : "2021/12/30", "endDate" : ""}
+  ]
+}
+*/
+
+const jsonData = {
+  "tableName" : "caipiao",
+  "columns" : [
+    {"name":"unit" ,"length":"4" ,"type":"varchar"},
+    {"name":"code" ,"length":"6" ,"type":"varchar"}
+  ],
+  "dataList" : [
+    {"unit":"18" ,"code" : "196016"},
+    {"unit":"18" ,"code" : "196017"},
+    {"unit":"18" ,"code" : "196018"},
+    {"unit":"36" ,"code" : "154432"},
+    {"unit":"36" ,"code" : "154433"},
+    {"unit":"36" ,"code" : "154434"},
+    {"unit":"72" ,"code" : "170274"},
+    {"unit":"72" ,"code" : "170275"},
+    {"unit":"72" ,"code" : "170276"},
+    {"unit":"84" ,"code" : "112848"},
+    {"unit":"84" ,"code" : "112849"},
+    {"unit":"84" ,"code" : "112850"},
+    {"unit":"90" ,"code" : "138590"},
+    {"unit":"90" ,"code" : "138591"},
+    {"unit":"90" ,"code" : "138592"},
+    {"unit":"109" ,"code" : "167303"},
+    {"unit":"109" ,"code" : "167304"},
+    {"unit":"109" ,"code" : "167305"},
+    {"unit":"111" ,"code" : "108878"},
+    {"unit":"111" ,"code" : "108879"},
+    {"unit":"111" ,"code" : "108877"},
+    {"unit":"145" ,"code" : "183145"},
+    {"unit":"145" ,"code" : "183146"},
+    {"unit":"145" ,"code" : "183147"},
+    {"unit":"157" ,"code" : "125719"},
+    {"unit":"157" ,"code" : "125720"},
+    {"unit":"157" ,"code" : "125721"},
+    {"unit":"163" ,"code" : "141561"},
+    {"unit":"163" ,"code" : "141562"},
+    {"unit":"163" ,"code" : "141563"}
+  ]
+};
+
+/*
+const jsonData = {
+  "tableName" : "",
+  "columns" : [
+    {"name":"startDate" ,"length":"20" ,"type":"varchar"},
+  ],
+  "dataList" : [
+    {"code":"pageB-3" ,"name" : "数据动态绑定(angular)","step" : "2.3" ,"parent" : "webSql" ,"status" : "01" , "startDate" : "2021/12/30", "endDate" : ""}
+  ]
+};
+*/
+
 
 

@@ -1,0 +1,40 @@
+#lotteryBox {
+  margin-left : -450px;
+}
+#notifyArea {
+  padding-left: 650px;
+  width : 250px;
+}
+#notifyArea .unit{
+  width : 50px;
+}
+.lottery {
+  background : url(../images/lottery.jpg);
+  background-size : 600px 200px;
+  border:2px solid #949494;
+  width : 600px;
+  height : 200px;
+  position : absolute;
+}
+.active {
+  margin-left:450px;
+  border:8px solid #fbff00ba;
+}
+.lottery:hover {
+  margin-left:450px;
+  z-index : 9;
+}
+.lottery span {
+  position : inherit;
+  font-size : 25px;
+  color : black;
+  margin-left : 475px;
+  font-family: "Arial Black";
+}
+.lottery .unit {
+  margin-top : 80px;
+}
+.lottery .number {
+  margin-top : 125px;
+  margin-left : 460px;
+}
