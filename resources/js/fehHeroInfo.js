@@ -1,8 +1,12 @@
 const searchParam = getUrlParam();
-const id = isEmpty(searchParam['id']) ? '167' : searchParam['id'];
+const id = isEmpty(searchParam['id']) ? '123' : searchParam['id'];
 const table = 'fireemblem_hero';
 const imgPath = "resources/images/illustration/feh/";
-var illustrationBox = ['normal.png','attact.png','break.png','extra.png'];
+const clint = navigator.userAgent;
+const app = navigator.appVersion;
+console.log(clint);
+console.log(app);
+var illustrationBox = ['normal.png','attact.png','extra.png','break.png'];
 var imgIndex = 0;
 var infoShowFlag = true;
 
@@ -16,6 +20,7 @@ var firstApp = angular.module('firstApp',[]).controller('myCtrl',function($scope
 */
 
 $(function(){
+  
   setHeroById(id);
   // 左右切换图片
   $(document).on('keydown',function(event){
@@ -26,14 +31,13 @@ $(function(){
     }
     setIllustration(imgIndex);
   });
-  //
-  window.resizeTo("1000","1080");
 });
 
+// 自动切换
 setInterval(function(){
   imgIndex = imgIndex == illustrationBox.length - 1 ? 0 : imgIndex+1;
   setIllustration(imgIndex);
-},2000);
+},5000);
 
 /* 设置面板信息
  */

@@ -1,11 +1,9 @@
 /* 元素样式 */
 body {
-  /*background:url(../images/backgoundImg.jpg)no-repeat;*/
   background: #dcd6e7;
-  background-size:1920px 1200px;
-  background-attachment:fixed;
 }
 
+/* 头部 */
 header {
   background: #170932ab;
   color: #0cf5f5;
@@ -19,10 +17,12 @@ header {
   z-index: 999
 }
 
+/* 主要内容 */
 main {
   padding-top:15px;
 }
 
+/* 侧边栏 */
 aside {
   position: fixed;
   width: 600px;
@@ -31,6 +31,7 @@ aside {
   background-size: 100% auto
 }
 
+/* 输入框 */
 input[type='text'] {
   height:22px;
   width:140px;
@@ -39,14 +40,23 @@ input[type='text'] {
   font-family:ui-rounded;
 }
 
+/* 图片按钮 */
 input[type='image'] {
-  filter: opacity(0.5);
   transform : scale(0.9);
+  animation : aniBtn 3s infinite;
 }
-
+/* 图片按钮-悬停 */
 input[type='image']:hover {
-  filter: opacity(1);
   transform : scale(1.1);
+}
+/* 图片按钮-动画 */
+@keyframes aniBtn {
+  50% {filter: opacity(0.5);}
+  60% {filter: opacity(0.6);}
+  70% {filter: opacity(0.7);}
+  80% {filter: opacity(0.8);}
+  90% {filter: opacity(0.9);}
+  100% {filter: opacity(1);}
 }
 
 .dateTime {
