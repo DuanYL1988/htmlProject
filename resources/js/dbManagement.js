@@ -1,32 +1,15 @@
-const shortName = 'db_html';
-const version = '1.0';
-const displayName = 'Display Information';
-const maxSize = 5*1024*1024;
-const positionColIndex = 0;
-
-// 检索设定参数
-var setUp = {
-  "head" : "",
-  "tableWidth" : "",
-  "table" : "",
-  "condition" : "",
-  "paramters" : [],
-  "orderBy" : "",
-  "pageNo" : "1",
-  "pageSize" : "15",
-  "orderByTitle" : "",
-  "fifter" : "",
-  "selectAll" : "true",
-};
-
+const webSqlObj = new webSqlManagement();
+var setUp = webSqlObj.setUp;
 // 上次执行过的检索SQL
 var searchedQuary;
-
 // 上次检索后的结果对象
 var selectedData;
-
 // 默认排序
 var orderby = 'asc';
+
+$(function() {
+  //setUp.table = jsonData.tableName;
+});
 
 /** 创建表
  *
@@ -38,7 +21,7 @@ function createTable(){
     createTblSql += ',' + this.name + ' ' + this.type +'(' + this.length +')';
   });
   createTblSql += ')';
-  executeQuary(createTblSql);
+  webSqlObj.executeQuary(createTblSql);
 }
 
 /** 批量插入数据
@@ -47,7 +30,7 @@ function createTable(){
 function insertDataList() {
   let tblNm = jsonData.tableName;
   $.each(jsonData.dataList,(i,recoderObj) => {
-    insertData(tblNm,recoderObj);
+    webSqlObj.insertData(tblNm,recoderObj);
   });
 }
 
@@ -60,25 +43,8 @@ function insertRow(btnEle){
   $.each($(rowEle).find("input"),function() {
     recoderObj[this.name] = this.value;
   });
-  insertData(setUp.table,recoderObj);
+  webSqlObj.insertData(setUp.table,recoderObj);
   reflashTable(searchedQuary);
-}
-
-/** 插入数据
- *
- */
-function insertData(tableName,recoderObj) {
-  let colSql = "insert into "+ tableName +"("
-  let valSql = " values (";
-  let paramters = [];
-  $.each(recoderObj,(column,value)=>{
-    colSql += column;
-    paramters.push(value);
-      colSql += ",";
-      valSql += "?,";
-  });
-  let insertQuery = colSql.substring(0,colSql.length-1) + ")" + valSql.substring(0,valSql.length-1) + ")";
-  executeQuary(insertQuery,paramters);
 }
 
 /** 编辑/更新当前行
@@ -105,73 +71,9 @@ function updateRow(id,btnEle) {
         recoderObj[this.name] = this.value;
       }
     });
-    updateDate(setUp.table,id,recoderObj);
+    webSqlObj.updateDate(setUp.table,id,recoderObj);
     reflashTable(searchedQuary);
   }
-}
-
-/** 更新数据
- *
- */
-function updateDate(tableName,id,recoderObj) {
-  let updateQuery = 'UPDATE ' + tableName + " SET ";
-  let paramters = [];
-  $.each(recoderObj,function(col,value){
-    value = 'null' == value ? '' : value;
-    updateQuery += col + " = ? ,"
-    paramters.push(value);
-  });
-  updateQuery += ' id = ' + id + ' WHERE id = ' + id;
-  console.log(updateQuery+paramters);
-  executeQuary(updateQuery,paramters);
-}
-
-/** 删除表
- * 
- */
-function dropTable(tableNm) {
-  executeQuary('drop table ' + tableNm);
-}
-
-/** 创建select文
- * 
- */
-function getSelectQuary() {
-  let sql =setUp.table + " WHERE 1 = 1 ";
-  let paramters = [];
-  // 检索条件
-  if(isNotEmpty(setUp.condition)){
-    if (typeof setUp.condition == "object") {
-      // 传入键值对
-      $.each(setUp.condition,function(col,val){
-        sql += " and col = ?";
-        paramters.push(val);
-      });
-    } else {
-      // 传入检索文字列
-      sql += " and " + setUp.condition;
-    }
-  }
-  // 排序
-  if(isNotEmpty(setUp.orderBy)){
-    sql += " ORDER BY " + setUp.orderBy;
-  }
-  // 分页
-  if(isNotEmpty(setUp.pageNo)){
-    let start = setUp.pageSize * (setUp.pageNo-1);
-    sql += " limit " + start + "," + setUp.pageSize;
-  }
-  let countSql = "SELECT COUNT(*) AS rstCnt FROM " + sql;
-  let mainSql = "SELECT * FROM " + sql;
-  setUp.paramters = paramters;
-  // 件数
-  executeQuary(countSql,paramters,function(result){
-    let totalCnt = result.rows[0].rstCnt;
-    $("#totalPage").html(parseInt(totalCnt/setUp.pageSize) + 1);
-    $("#currentPageNo").val(setUp.pageNo);
-  });
-  searchedQuary = mainSql;
-  return mainSql;
 }
 
 /** 检索DB
@@ -186,9 +88,11 @@ function searchQuary() {
   setUp.table = selectedVal.split(',')[0];
   setUp.tableWidth = selectedVal.split(',')[1] + "px";
   setUp.pageSize = $("#pageSize").val();
+  setUp.pageNo = $("#currentPageNo").val();
   setUp.orderByTitle = document.getElementById('orderByFlag') ? 'true' : '';
   setUp.fifter = document.getElementById('fifterFlag') ? 'true' : '';
-  executeQuary(getSelectQuary(),[],function(result){
+  searchedQuary = webSqlObj.getSelectQuary(setUp);
+  webSqlObj.executeQuary(searchedQuary,[],function(result){
     selectedData = result.rows;
     makeTableElement(result,"mianTbl");
   });
@@ -211,22 +115,8 @@ function excuteCustQuery(){
     setUp.paramters = [];
     searchQuary();
   } else {
-    executeQuary(sql,[],function(result){
-      showUpdateMsg(keyword,result);
+    webSqlObj.executeQuary(sql,[],function(result){
     });
-  }
-}
-
-/** 自定义执行结果表示
- *
- */
-function showUpdateMsg(type,result){
-  if('update' == type) {
-    alert("执行成功,"+result.rowsAffected+"件数据被更新");
-  } else if ('insert' == type) {
-    alert("追加成功");
-  } else if ('delete' == type) {
-    alert("删除成功");
   }
 }
 
@@ -239,7 +129,8 @@ function reSearch(columnName) {
   // sql排序文字列
   orderbyQuary = columnName + ' ' + orderby;
   setUp.orderBy = orderbyQuary;
-  reflashTable(getSelectQuary());
+  searchedQuary = webSqlObj.getSelectQuary(setUp);
+  reflashTable(searchedQuary);
 }
 
 /** 筛选数据
@@ -248,39 +139,18 @@ function reSearch(columnName) {
 function fifterRows(column,inputEle) {
   conditionQuery = column + " like '%" + inputEle.value + "%'";
   setUp.condition = conditionQuery;
-  reflashTable(getSelectQuary());
+  searchedQuary = webSqlObj.getSelectQuary(setUp);
+  reflashTable(searchedQuary);
 }
 
 /** 刷新结果区域
  *
  */
 function reflashTable(sql) {
-  executeQuary(sql,setUp.paramters,function(result){
+  webSqlObj.executeQuary(sql,setUp.paramters,function(result){
     console.log(result.rows);
     document.getElementById('detailRows').outerHTML = '';
     document.getElementById('mianTbl').appendChild(createTbody(result));
-  });
-}
-
-/** WebSql执行sql,其他数据库时使用ajax请求用法基本一致
- *
- */
-function executeQuary(query,paramters,callback){
-  console.log(query);
-  let db = openDatabase(shortName,version,displayName,maxSize);
-  db.transaction(tx => {
-    tx.executeSql(query,paramters,
-      (tx,result) => {
-        console.log('SQL-success:' + result);
-        console.dir(result);
-        if (typeof callback == 'function') {
-          callback(result);
-        }
-      },
-      (tx,error) => {
-        console.log('SQL-filed:' + error.message);
-      }
-    )
   });
 }
 
@@ -317,14 +187,8 @@ function makeTableElement(dataList,tblEleId){
 
   // 结果设定
   $.each(setUp.head,function(i){
-    let thClass = "";
-    if(i < positionColIndex) {
-      thClass = "col-position";
-    } else if (i == positionColIndex) {
-      thClass = "re-position";
-    }
     let classNm = isNotEmpty(setUp.orderByTitle) ? "orderbyCol " : "";
-    let th = createElement("th","",classNm + thClass,"");
+    let th = createElement("th","",classNm,"");
     th.innerHTML = this;
     // orderBy
     if (isNotEmpty(setUp.orderByTitle)) {
@@ -333,7 +197,7 @@ function makeTableElement(dataList,tblEleId){
     tr.appendChild(th);
     
     // fifter
-    let fifterTh = createElement("th","",thClass,"");
+    let fifterTh = createElement("th","","","");
     // 设置id属性,后面追加 更新入力框设定name用
     let inputCol = createElement("input","","","fifter_"+this);
     // 筛选事件
@@ -381,14 +245,8 @@ function createTbody(dataList){
     // data
     let j = 0;
     $.each(this,function(key,cell){
-      let thClass = "";
-      if(j < positionColIndex) {
-        thClass = "col-position";
-      } else if (j == positionColIndex) {
-        thClass = "re-position";
-      } 
       let id = "row" + i + "_" + key;
-      let td = createElement("td",id,thClass,"");
+      let td = createElement("td",id,'',"");
       td.innerHTML = cell;
       tr.appendChild(td);
       j++;
@@ -416,22 +274,6 @@ function createTbody(dataList){
     tbody.appendChild(tr);
   });
   return tbody;
-}
-
-/** 下拉框从codeMaster中取值设定选项
- *
- */
-function getOptionsFromCodeMaster(selectEle,categoryId){
-  let sql = "select * from CODE_MASTER WHERE categoryId = ? ";
-  executeQuary(sql,[categoryId],function(result){
-    selectEle.appendChild(createElement('option','','',''));
-    $.each(result.rows,function(){
-      let optionEle = createElement('option','','','');
-      optionEle.value = this.code;
-      optionEle.innerHTML = this.value;
-      selectEle.appendChild(optionEle);
-    })
-  });
 }
 
 /** 全选/全不选
@@ -493,4 +335,20 @@ function addLine(){
     newRow.appendChild(newTd);
   });
   tbody.appendChild(newRow);
+}
+
+/** 下拉框从codeMaster中取值设定选项
+ *
+ */
+function getOptionsFromCodeMaster(selectEle,categoryId){
+  let sql = "select * from CODE_MASTER WHERE categoryId = ? ";
+  webSqlObj.executeQuary(sql,[categoryId],function(result){
+    selectEle.appendChild(createElement('option','','',''));
+    $.each(result.rows,function(){
+      let optionEle = createElement('option','','','');
+      optionEle.value = this.code;
+      optionEle.innerHTML = this.value;
+      selectEle.appendChild(optionEle);
+    })
+  });
 }

@@ -1,15 +1,12 @@
-html {font-size:62.5%;}
 /* */
 .btnSearchItem{
-  position: absolute;
   z-index: 10;
-  left: 20rem;
+  left: 25rem;
   top: -1.5rem;
 }
 #resultArea {
   border:2px solid #949494;
   border-radius : 0px 0px 1rem 1rem;
-  width : 25rem;
   background : #ffffffb8;
 }
 .resultEow:hover {
@@ -22,7 +19,7 @@ html {font-size:62.5%;}
 /* 页面全体 */
 #activity{
   background:url(../images/backgound_v.jpg)no-repeat;
-  width: 80rem;
+  width: 82rem;
   height: 95rem;
   margin: -2.3rem 0 0 -1rem;
 }
@@ -42,20 +39,35 @@ html {font-size:62.5%;}
 }
 /* 具体信息区域 */
 #heroStatusArea {
-  position: absolute;
-  width: 60rem;
-  height: 30rem;
-  margin-top: 55rem;
-  margin-left: 8rem;
-  background-color: #1e1e1e87;
-  border-radius: 1rem;
+  background:url(../images/bk_fe_board.png)no-repeat;
+    background-size: 60rem 56rem;
+    position: absolute;
+    width: 60rem;
+    height: 56rem;
+    margin-top: 33rem;
+    margin-left: 10rem;
 }
 /* 称号和名称区域 */
 #titleArea{
-  background:url(../images/bk_title.png)no-repeat;
-    background-size: 25rem 15rem;
     height: 15rem;
-    margin-top: -16.5rem;
+    margin-top: 1.4rem;
+}
+/* 称号和名称区域-文字 */
+#titleArea label {
+display: grid;
+    padding-left: 9rem;
+    padding-top: 3.6rem;
+    text-shadow: #003 5px 5px 8px;
+    font-size: 2.1rem;
+    font-weight: bolder;
+    color: white;
+}
+/* 神裝圖標 */
+.newSkin {
+    width: 6rem;
+    position: absolute;
+    left: 23rem;
+    top: 0.5rem;
 }
 .blessType {
   padding-left: 54rem;
@@ -63,65 +75,21 @@ html {font-size:62.5%;}
   width : 6rem;
 }
 /* 具体信息文字列 */
-#codeImageArea {
-  background:url(../images/bk_attr.png)no-repeat;
-  background-size:25rem 3rem;
-  height : 3rem;
-  margin-left: 1rem;
-}
+
 /* 行 */
 .statusAndSkillRow {
-  display: flex;
-  padding-top: 1rem;
-  padding-left : 3rem;
-}
-/* 称号和名称区域-文字 */
-#titleArea label {
-  display: grid;
-  padding-left: 6rem;
-  padding-top: 4rem;
-  text-shadow:#003 5px 5px 8px;
-  font-size: 1.9rem;
-  font-weight: bolder;
-  color: white;
-}
-/* 数值区域块 */
-.status {
-  background:url(../images/bk_attr.png)no-repeat;
-  background-size: 20rem 3rem;
-    width: 23rem;
-    height: 3rem;
+padding-top: 1.3rem;
+    padding-left: 14rem;
     font-size: 2rem;
-  padding-left: 3rem;
-}
-/* 技能区域块 */
-.skill {
-  background:url(../images/bk_skill.png)no-repeat;
-  background-size:25rem 3rem;
-  width : 25rem;
-}
-/* 武器背景图 */
-.weapon {
-  background:url(../images/bk_weapon.png)no-repeat;
-  background-size:25rem 3rem;
-  width : 25rem;
-  margin-left: -0.7rem;
-}
-/* 武器 */
-.skill,.weapon label {
-  font-size: 1.7rem;
-  padding-left: 5rem;
-  padding-top: 0.2rem;
-}
-/* 说明文字列 */
-.title{
-  font-weight: bolder;
-  color : white;
 }
 /* 值 */
-.value{
+.statusAndSkillRow .value{
   padding-left: 4rem;
   color : yellow;
+}
+.statusAndSkillRow .title{
+  padding-left: 14rem;
+  color : white;
 }
 /* 下方区域 */
 #bottomBtnArea {
