@@ -3,18 +3,16 @@
       'ajaxGet': ajaxGet,
       'ajaxPost': ajaxPost,
       'getValByKey':getValByKey,
-      'changeNull':changeNull,
       'isEmpty':isEmpty,
       'isNotEmpty':isNotEmpty,
       'isInclude':isInclude,
-      'createImg':createImg,
       'createOptions':createOptions,
       'createCheck':createCheck,
+      'createImg':createImg,
       'createElement':createElement,
       'createTable':createTable,
-      'setTbltxtWithCoordinate':setTbltxtWithCoordinate,
-      'closePopupWindow':closePopupWindow,
       'popupMsg':popupMsg,
+      'closePopupWindow':closePopupWindow,
       'formateDateYMDHMslash':formateDateYMDHMslash,
       'transListToMap':transListToMap,
       'transGirdToMap':transGirdToMap,
@@ -62,18 +60,7 @@
       });
       return value;
   }
-
-  function changeNull(text){
-      if("null"==text){
-          return "";
-      }
-      return text;
-  }
   
-  /**
-   * 对象为空判断
-   * @param arg js对象,值
-   */
   function isEmpty(arg) {
       arg = $.trim(arg);
       if (typeof arg == 'undefined') {
@@ -88,10 +75,6 @@
       }
   }
   
-  /**
-   * 对象不为空判断
-   * @param arg js对象,值
-   */
   function isNotEmpty(arg) {
       var rslt = isEmpty(arg) ? false : true;
       return rslt;
@@ -266,22 +249,6 @@
   function createAttr(elementObj,attrNm,attrValue){
     if (isNotEmpty(attrValue)){
       elementObj[attrNm] = attrValue;
-    }
-  }
-
-  /** 通过行列设定table内容
-  * @param tblId 表ID
-  * @param rowNo 行号
-  * @param colNo 列号
-  * @param strVal 值
-  */
-  function setTbltxtWithCoordinate(tblId,rowNo,colNo,strVal) {
-    try {
-      var rowTr = $("#"+tblId).find("tr")[rowNo];
-      var colTd = $(rowTr).find("td")[colNo];
-      $(colTd).html(strVal);
-    } catch (e) {
-      console.log(e);
     }
   }
   

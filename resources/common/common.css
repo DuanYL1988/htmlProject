@@ -1,3 +1,4 @@
+html {font-size:62.5%;}
 /* 元素样式 */
 body {
   background: #dcd6e7;
@@ -94,21 +95,23 @@ td {
 
 /* 图片容器 */
 .imageBox {
-  display : inline-block;
+  display : grid;
 }
-/* 图片容器 */
-.cellImage {
-  display : inline-block;
-  float : left;
-  width : 100px;
-  height : 100px;
+.groupBox .cell {
+  float: left;
+  margin: 0.2rem;
+  border: 0.2rem solid #7e868d;
+  box-sizing: border-box;
+  width: 8rem;
+  height: 8rem;
+  overflow: hidden;
 }
-
-.faceImg {
-  width : 100px;
-  height : 100px;
-  padding-left : 5px;
-  padding-top : 5px;
+.groupBox .cell img {
+  width: 8rem;
+  height: 8rem;
+}
+.groupBox .cell:hover {
+  transform : scale(1.1);
 }
 
 /* 提示输入错误样式 */
@@ -192,6 +195,24 @@ input[type='text'][class='error'] {
 /* 编辑区域 Div */
 .editArea {
   padding-top:15px;
+}
+
+.imageBtn {
+  background:url(../images/btn_bottem.png)no-repeat;
+  background-size: 15rem 3rem;
+  width:15rem;
+  height:3rem;
+    float: left;
+    margin-left: 1rem;
+    border: 0.2rem solid #7e868d;
+}
+.imageBtn span{
+    padding-left: 2.7rem;
+    font-size: 2rem;
+    color: white;
+}
+.imageBtn:hover{
+  transform:scale(1.1);
 }
 
 button,input[type='button'] {

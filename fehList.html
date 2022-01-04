@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>火纹</title>
+<link href="resources/common/common.css" rel="stylesheet" />
+<style>
+h2 {
+  margin-bottom : -0.1rem;
+}
+#hoverWindow {
+  position : fixed;
+  display : none;
+  top : 2rem;
+  left : 2rem;
+  width : 24rem;
+  height : 12rem;
+  background : #588ea3ed;
+  border-radius: 1rem;
+  z-index : 1;
+}
+/*
+.cell {
+  /*border-image: url(resources/images/bk_face.png) 24/1rem/4px round;*/
+}*/
+
+</style>
+<script src="resources/lib/jquery-3.4.1.min.js"></script>
+<script src="resources/common/commonService.js"></script>
+<script src="resources/common/webSql.js"></script>
+<script src="resources/js/hero.js"></script>
+<script>
+const imgPath = "resources/images/illustration/feh/";
+const webSqlUtil = new webSqlManagement();
+const showGroupType = 'weaponType';
+const findAll = "select * from fireemblem_hero order by " + showGroupType + ",moveType desc ";
+var imgEleList = [];
+
+$(function(){
+  webSqlUtil.executeQuary(findAll,[],(result)=>{
+    initialize(result.rows);
+  });
+});
+
+/* 生成所有的图片对象 */
+function initialize(dataList) {
+  $.each(dataList,(index,data) => {
+    let item = new faceElement(data,imgPath).handle();
+    imgEleList.push(item);
+  });
+  showPage(showGroupType);
+}
+
+/* 生成分组信息 */
+function showPage(groupPartten) {
+  // 初始化
+  let box = $(".imageBox")[0];
+  box.innerHTML = "";
+  // 分组key
+  let ptnList = {};
+  $.each(imgEleList,(index,item) => {
+    let value = item.data[groupPartten];
+    let groupBox;
+    // key有直接取得,没有新建
+    if (isEmpty(ptnList[value])) {
+      groupBox = createElement('div','','groupBox','');
+      let h2Ele = createElement('h2');
+      h2Ele.innerHTML = value;
+      groupBox.appendChild(h2Ele);
+    } else {
+      groupBox = ptnList[value];
+    }
+    let cellDiv = createElement('div','','cell','');
+    cellDiv.appendChild(item.img);
+    groupBox.appendChild(cellDiv);
+    // 更新key
+    ptnList[value] = groupBox;
+  });
+  // 放入大box
+  $.each(ptnList,(key,val) => {
+    box.appendChild(val);
+  });
+}
+
+</script>
+</head>
+<body>
+  <main>
+    <!-- 具体信息 -->
+    <div class="detailArea"></div>
+    <!-- 编队信息 -->
+    <div class="teamList">
+      <div class="imageBtn" onclick="showPage('moveType')">
+        <span>移动方式</span>
+      </div>
+      <div class="imageBtn" onclick="showPage('color')">
+        <span>颜色</span>
+      </div>
+      <div class="imageBtn" onclick="showPage('race')">
+        <span>种族</span>
+      </div>
+    </div>
+    <!-- 一览 -->
+    <div class="imageBox" style="width:90rem">
+    </div>
+    
+    <!-- 悬浮信息 -->
+    <div id="hoverWindow"></div>
+  </main>
+</body>
+</html>
