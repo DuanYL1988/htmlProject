@@ -18,7 +18,7 @@
 
 /* 页面全体 */
 #activity{
-  background:url(../images/backgound_v.jpg)no-repeat;
+  background:url(../resources/images/backgound_v.jpg)no-repeat;
   width: 82rem;
   height: 95rem;
   margin: -2.3rem 0 0 -1rem;
@@ -39,7 +39,7 @@
 }
 /* 具体信息区域 */
 #heroStatusArea {
-  background:url(../images/bk_fe_board.png)no-repeat;
+  background:url(../resources/images/bk_fe_board.png)no-repeat;
     background-size: 60rem 56rem;
     position: absolute;
     width: 60rem;

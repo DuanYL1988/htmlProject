@@ -1,0 +1,5 @@
+/* CSS中元素横向排列 */
+方法一:排列元素使用 display : inline;
+内联布局,且无法使用width,height属性
+方法二:排列元素使用 float : left
+脱离普通的文档流布局,可以使用width,height属性
