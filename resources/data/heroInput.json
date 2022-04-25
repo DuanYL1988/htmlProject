@@ -1,3 +1,17 @@
+const jsonData = {
+  "tableName" : "Revenue_Expenditure",
+  "columns" : [
+    {"name":"RECTIME","length":"10","type":"VARCHAR","fifterWidth" : "20px"},
+    {"name":"CLASSIFY","length":"10","type":"VARCHAR","fifterWidth" : "20px"},
+    {"name":"PLACE","length":"10","type":"VARCHAR","fifterWidth" : "20px"},
+    {"name":"NAME","length":"50","type":"VARCHAR","fifterWidth" : "40px"},
+    {"name":"MONEY","length":"10","type":"NUMBER","fifterWidth" : "20px"}
+  ],
+  "dataList" : [
+    {"RECTIME" : "2022/04/01","CLASSIFY" : "BUY" ,"PLACE" : "京东" ,"NAME" : "AOC27寸4K显示器" , "MONEY" : "1858"}
+  ]
+};
+
 /*
 const jsonData = {
   "tableName" : "FIREEMBLEM_HERO",
@@ -143,7 +157,7 @@ const jsonData = {
   ]
 }
 */
-
+/*
 const jsonData = {
   "tableName" : "caipiao",
   "columns" : [
@@ -183,6 +197,7 @@ const jsonData = {
     {"unit":"163" ,"code" : "141563"}
   ]
 };
+*/
 
 /*
 const jsonData = {
