@@ -1,0 +1,67 @@
+.topArea {
+  position : fixed;/* heard固定 */
+  top : 0;
+  left : 0;
+  width : 100%;
+  height : 120px;
+  background-color : rgba(255,255,255,0.8);
+}
+
+/* 商标,左右信息块左对齐 */
+.icon,.leftArea,.rightArea {
+  float : left;
+  padding-left : 100px;
+}
+
+/* 导航右对齐 */
+.navieArea {
+  float : right;
+}
+
+.icon {
+  padding-top : 20px;
+}
+
+.topArea .icon img {
+  height : 80px;
+  width : auto;
+}
+
+.navieArea li {
+  float : left;
+  padding-left : 5px;
+  padding-top : 30px;
+  width : 80px;
+  height : 50px;
+}
+
+.navieArea li:hover {
+  border-top : 3px solid #45aed6;
+}
+
+.infoArea {
+  background-color:#eeeeee;
+  height : 160px;
+}
+
+
+ul,li {
+  margin:0px;padding:0px;list-style:none;/*不首行缩进*/
+}
+
+li {
+  list-style : none;/* 去除li的. */
+}
+
+.title {
+  font-size : xx-large;
+}
+
+/* 横向排列单位元素 */
+.item {
+  width : 100px;
+  height : 100px;
+  display : inline;
+  margin-left : 20px;
+  background-color : green;
+}

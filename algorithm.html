@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据结构和算法</title>
+<link href="resources/common/common.css" rel="stylesheet" />
+<script src="resources/lib/jquery-3.4.1.min.js"></script>
+<script src="resources/common/commonService.js"></script>
+<script>
+  function timeCheck(funObj) {
+    console.time('time');
+    var result = funObj;
+    console.timeEnd('time');
+    return result;
+  }
+</script>
+</head>
+<body>
+<div>
+  <h2>裴波拉起数列</h2>
+  <span>数列中第</span>
+  <input type='number' id='index' style='width:50px' />
+  <span>位,其值为:</span><span id='result1'></span>
+  <button type='button' onclick='calc()' style='width:50px'>计算</button>
+  <script>
+    function calc(){
+      let index = $('#index').val();
+      if (isEmpty(index)){
+        return;
+      } else {
+        $('#result1').html(timeCheck(method3(index)));
+      }
+    }
+    // 递归方式,便于理解本质,但有性能问题
+    function method1(index) {
+      if(index <= 1) {
+        return index;
+      } else {
+        return method1(index-1) + method1(index-2);
+      }
+    }
+    // 循环计算
+    function method2(index) {
+      if(index <= 1) {
+        return index;
+      } else {
+        let first = 0;
+        let second = 1;
+        let sum;
+        for (let i = 0;i<index-1;i++) {
+          sum = first + second;
+          first = second;
+          second = sum;
+        }
+        return second;
+      }
+    }
+    // 数组方式计算,可以得到整个数列
+    function method3(index){
+      let arrs = [0,1];
+      for (let i = 2;i<index;i++) {
+        arrs[i] = arrs[i-1] + arrs[i-2];
+      }
+      console.log(arrs);
+      return arrs[index-1];
+    }
+  </script>
+</div>  
+<div>
+
+</div>
+</body>
+</html>

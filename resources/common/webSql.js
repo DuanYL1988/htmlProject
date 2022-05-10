@@ -31,7 +31,7 @@ class webSqlManagement {
         valSql += "?,";
     });
     let insertQuery = colSql.substring(0,colSql.length-1) + ")" + valSql.substring(0,valSql.length-1) + ")";
-    executeQuary(insertQuery,paramters);
+    this.executeQuary(insertQuery,paramters);
   }
   // 更新数据
   updateDate(tableName,id,recoderObj) {
@@ -44,7 +44,7 @@ class webSqlManagement {
     });
     updateQuery += ' id = ' + id + ' WHERE id = ' + id;
     console.log(updateQuery+paramters);
-    executeQuary(updateQuery,paramters);
+    this.executeQuary(updateQuery,paramters);
   }
   // 执行SQL
   executeQuary(query,paramters,callback){

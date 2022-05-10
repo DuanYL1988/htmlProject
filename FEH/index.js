@@ -30,7 +30,7 @@ class faceElement extends baseImage {
   clickEvent(e) {
     console.dir(this.data.imgName);
     let param = 'id=' + this.data.id + '&pageNo=' + 'heroList.html';
-    //window.open('fehSingleHero.html?'+param,"","height=1080 , width=825 , top=0 , left=500 ", false);
+    window.open('singleHero.html?'+param,"","height=1080 , width=825 , top=0 , left=500 ", false);
   }
   hoverEvent(e){
     let _left = e.clientX;

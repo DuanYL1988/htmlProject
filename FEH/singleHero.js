@@ -2,7 +2,7 @@ const id = isEmpty(getUrlParam()['id']) ? '123' : getUrlParam()['id'];
 const webSqlObj = new webSqlManagement();
 var setUp = webSqlObj.setUp;
 setUp.table = "fireemblem_hero";
-const imgPath = "resources/images/illustration/feh/";
+const imgPath = "D:/picture/illustration/feh/";
 //立绘盒
 var illustrationBox = ['normal.png','attact.png','extra.png','break.png'];
 // 神装flag

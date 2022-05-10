@@ -21,6 +21,7 @@ header {
 /* 主要内容 */
 main {
   padding-top:15px;
+  display: grid;
 }
 
 /* 侧边栏 */

@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>火纹</title>
-<link href="resources/common/common.css" rel="stylesheet" />
+<link href="../resources/common/common.css" rel="stylesheet" />
 <style>
 h2 {
   margin-bottom : -0.1rem;
@@ -18,18 +18,14 @@ h2 {
   border-radius: 1rem;
   z-index : 1;
 }
-/*
-.cell {
-  /*border-image: url(resources/images/bk_face.png) 24/1rem/4px round;*/
-}*/
 
 </style>
-<script src="resources/lib/jquery-3.4.1.min.js"></script>
-<script src="resources/common/commonService.js"></script>
-<script src="resources/common/webSql.js"></script>
-<script src="resources/js/hero.js"></script>
+<script src="../resources/lib/jquery-3.4.1.min.js"></script>
+<script src="../resources/common/commonService.js"></script>
+<script src="../resources/common/webSql.js"></script>
+<script src="index.js"></script>
 <script>
-const imgPath = "resources/images/illustration/feh/";
+const imgPath = "D:/picture/illustration/feh/";
 const webSqlUtil = new webSqlManagement();
 const showGroupType = 'weaponType';
 const findAll = "select * from fireemblem_hero order by " + showGroupType + ",moveType desc ";
