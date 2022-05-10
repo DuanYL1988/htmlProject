@@ -1,16 +1,25 @@
 const jsonData = {
-  "tableName" : "Revenue_Expenditure",
+  "tableName" : "JPN_WORDS",
   "columns" : [
-    {"name":"RECTIME","length":"10","type":"VARCHAR","fifterWidth" : "20px"},
-    {"name":"CLASSIFY","length":"10","type":"VARCHAR","fifterWidth" : "20px"},
-    {"name":"PLACE","length":"10","type":"VARCHAR","fifterWidth" : "20px"},
-    {"name":"NAME","length":"50","type":"VARCHAR","fifterWidth" : "40px"},
-    {"name":"MONEY","length":"10","type":"NUMBER","fifterWidth" : "20px"}
+    {"name":"JPN_WORD","length":"20","type":"VARCHAR"},
+    {"name":"CHN_WORD","length":"20","type":"VARCHAR"},
+    {"name":"ENG_WORD","length":"20","type":"VARCHAR"},
+    {"name":"CLASSIFY","length":"20","type":"VARCHAR"}
   ],
   "dataList" : [
-    {"RECTIME" : "2022/04/01","CLASSIFY" : "BUY" ,"PLACE" : "京东" ,"NAME" : "AOC27寸4K显示器" , "MONEY" : "1858"}
+    {"JPN_WORD" : "アーカイブファイル" ,"CHN_WORD" : "归档文件" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "アカウント" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "アクティブ" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "扱う" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "預かる" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "圧縮[あっしゅく]" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "アップグレード" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "アプリケーション" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "アルゴリズム" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""},
+    {"JPN_WORD" : "アラート" ,"CHN_WORD" : "" ,"ENG_WORD" : "" , "CLASSIFY" : ""}
   ]
 };
+
 
 /*
 const jsonData = {

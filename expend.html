@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据管理</title>
+<link href="resources/common/common.css" rel="stylesheet" />
+<script src="resources/lib/jquery-3.4.1.min.js"></script>
+<script src="resources/common/commonService.js"></script>
+<!-- 建表数据 -->
+<script src="resources/common/webSql.js"></script>
+<script>
+  const webSqlObj = new webSqlManagement();
+  const selectQuary = 'select * from Revenue_Expenditure order by RECTIME,CLASSIFY';
+  var tableData;
+  var groupData = []; // 每月收入支出数据
+
+  $(function() {
+    webSqlObj.executeQuary(selectQuary,[],(result)=>{
+      tableData = result.rows;
+      console.log(tableData);
+      groupByMounth(tableData);
+    });
+  });
+  
+  // 计算每个月收入支出
+  function groupByMounth(tableData){
+    $.each(tableData,function(i,detail){
+      // 去掉日数
+      let month = detail.RECTIME.substr(0,7);
+      // 每月数据初始化
+      if (isEmpty(groupData[month])) {
+        // 初始化
+        let newData = {
+          'input' : 0,
+          'output' : 0
+        };
+        // 判断收入支出
+        if (detail.CLASSIFY == 'BUY') {
+          newData.output = parseInt(detail.MONEY);
+        } else {
+          newData.input = parseInt(detail.MONEY);
+        }
+        groupData[month] = newData;
+      } else {
+        // 每月数据更新
+        let updData = groupData[month];
+        // 判断收入支出
+        if (detail.CLASSIFY == 'BUY') {
+          updData.output += detail.MONEY;
+        } else {
+          updData.input += detail.MONEY;
+        }
+      }
+    });
+    console.log(groupData);
+  }
+</script>
+</head>
+<body>
+</body>
+</html>
